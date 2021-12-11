@@ -9,7 +9,7 @@ const mysql=require('mysql');
 const nodemailer=require('nodemailer');
 const alert=require('alert');
 
-
+//Templating Engine for html
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
