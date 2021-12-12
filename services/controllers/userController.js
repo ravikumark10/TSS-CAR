@@ -31,20 +31,20 @@ exports.view=(req,res)=>{
 
 //view login page
 exports.loginform=(req,res)=>{
-    res.sendFile(path.join(__dirname+'/index.html'));
+    res.sendFile(path.join(__dirname+'/login.html'));
 
 }
 
-//form register
+//register form data submission
 exports.form_register=(req,res)=>{
-    const {Name,Department,mobilenumber,Email,nPassword,Password}=req.body;
+    const {Name,Department,Email,Password,c_password}=req.body;
 
     //connect to db
     pool.getConnection((err,connection)=>{
         if(err)throw err;
         console.log("connect to database "+connection.threadId);
 
-        connection.query('INSERT INTO user_reg SET name=?,dept=?,email=?,npassword=?,password=?,mobile=?',[Name,Department,Email,nPassword,Password,mobilenumber]);
+        connection.query('INSERT INTO user_reg SET name=?,dept=?,email=?,password=?,c_password=?',[Name,Department,Email,Password,c_password]);
         connection.release();
 
         if(!err){
@@ -62,8 +62,8 @@ exports.form_register=(req,res)=>{
 
 //login validate 
 exports.login_form=(req,res)=>{
-    let username=req.body.uname1;
-    let password=req.body.pass;
+    let username=req.body.username;
+    let password=req.body.password;
     //connect to db
     pool.getConnection((err,connection)=>{
         if(err)throw err;
@@ -118,7 +118,7 @@ exports.datecall=(req,res)=>{
         
         var sql1=`SELECT stime,etime FROM booking WHERE hall='conference' AND admin='none'  AND sdate='${value_date}'`;
         var sql2=`SELECT stime,etime FROM booking WHERE hall='conference' AND admin='Approved' AND sdate='${value_date}'`;
-        var result=["07:00 AM","08:00 AM","09:00 AM","10:00 AM","11:00 AM","12:00 PM","01:00 PM","02:00 PM","03:00 PM","04:00 PM","05:00 PM","06:00 PM","7:00 PM","8:00 PM","9:00 PM"];
+        var result=["07:00 AM","08:00 AM","09:00 AM","10:00 AM","11:00 AM","12:00 PM","01:00 PM","02:00 PM","03:00 PM","04:00 PM","05:00 PM","06:00 PM","07:00 PM","08:00 PM","09:00 PM"];
          connection.query(sql1,(err,result1)=>{
             if (err) throw err;
             var request=[];
@@ -140,7 +140,7 @@ exports.datecall=(req,res)=>{
     })
 }
 
-
+/*
 //hall booking register
 exports.hallbook=(req,res)=>{
     const id=Math.round(Math.random() * (100-10)+10);
@@ -327,3 +327,4 @@ exports.logout=(req,res)=>{
     res.sendFile(path.join(__dirname+'/index.html'));
 
 }
+*/

@@ -20,7 +20,7 @@ body {
 	margin: -30px -30px 20px;
 	padding: 30px 30px 10px;
 	text-align: center;
-	background: khaki;
+	background: #003380;
 	border-bottom: 1px solid #eee;
 	color: #fff;
 }
@@ -65,16 +65,16 @@ body {
 .signup-form .btn {        
 	font-size: 16px;
 	font-weight: bold;
-	background:khaki;
+	background:#003380;
 	border: none;
 	min-width: 200px;
 }
 .signup-form .btn:hover, .signup-form .btn:focus {
-	background: orange !important;
+	background: blue !important;
 	outline: none;
 }
 .signup-form a {
-	color: orange;		
+	color: #003380;		
 }
 .signup-form a:hover {
 	text-decoration: underline;
@@ -91,7 +91,7 @@ body {
   left: 300px;
   font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
-  color: khaki;
+  color: lightsalmon;
 }
 #title #t1{
   font-size: 6vw;
@@ -106,7 +106,7 @@ body {
   text-decoration: none;
 }
 #l-div1 a:hover{
-  background-color: orange;
+  background-color: #003380;
   padding: 5px;
   border-radius: 5px;
   color: white;

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../style/conference.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="../javascript/conference.js"></script>
+     <title>Conference</title>
+   </head>
+<body>
+  <nav>
+    <div class="navbar">
+      <i class='bx bx-menu'></i>
+      <div class="nav-links">
+        <ul class="links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About us</a></li>
+          <li >
+            <a href="#">Services</a>
+            <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
+            <ul class="htmlCss-sub-menu sub-menu">
+                <div class="c-service">
+              <li><a href="#">Conference Hall</a></li>
+              <li><a href="#">Classroom</a></li>
+              <li><a href="#">Equipments</a></li>
+              <li><a href="#">Labs</a></li>
+              </div>
+            </ul>
+          </li>
+          <li id="c-title">TSS CAR Services</li>
+          <li id="c-logout"><a href="#">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div id="c-head">
+    <h2>Conference Hall Booking</h2>
+  </div>
+  <div id="c-s-date">
+    <h3>Conference Hall Time Chart</h3>
+    <div id="c-ss-d">
+        <form action="/datedisplay" method="post">
+            <label>Select date:</label>
+            <input type="date" name="Date"><br>
+            <button onclick="showstatus()" type="submit">Check</button>
+        </form>
+    </div>  
+    </div>
+  <div id="chart" style="display: none;">
+    <div id="c-status">
+        <div id="green"><img src="../images/green.png"><p>-Available</p></div>
+        <div id="orange"><img src="../images/orange.png"><p>-Requested</p></div>
+        <div id="red"><img src="../images/red.png"><p>-Available</p></div>
+    </div>
+    <div  id="c-c-d"><p>Date:</p><p>{{date formattedDate "DD/MM/YYYY"}}</p> </div>
+    <div id="c-timechart">
+      {{#each result}}
+            <div style="{{#ifIn this ../request}}background-color:orange{{/ifIn}}{{#ifIn this ../approve}}background-color:red{{/ifIn}}">{{this}}</div>
+      {{/each}}
+    </div>
+  </div>
+</body>
+</html>
