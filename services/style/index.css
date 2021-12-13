@@ -1,0 +1,132 @@
+body {
+	color: #999;
+	font-family: 'Roboto', sans-serif;
+  background-image: url("../images/index.jpg") ;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.form-control {
+	min-height: 41px;
+	box-shadow: none;
+	border-color: #e1e1e1;
+}
+.form-control:focus {
+	border-color: #00cb82;
+}	
+.form-control, .btn {        
+	border-radius: 3px;
+}
+.form-header {
+	margin: -30px -30px 20px;
+	padding: 30px 30px 10px;
+	text-align: center;
+	background: #003380;
+	border-bottom: 1px solid #eee;
+	color: #fff;
+}
+.form-header h2 {
+	font-size: 34px;
+	font-weight: bold;
+	margin: 0 0 10px;
+  font-family: 'Times New Roman', Times, serif;
+}
+.form-header p {
+	margin: 20px 0 15px;
+	font-size: 17px;
+	line-height: normal;
+	font-family: 'Courgette', sans-serif;
+}
+.signup-form {
+	width: 390px;
+	margin: 0 auto;	
+	padding: 30px 0;	
+  position: relative;
+  left: 450px;
+}
+.signup-form form {
+	color: #999;
+	border-radius: 3px;
+	margin-bottom: 15px;
+	background: #f0f0f0;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	padding: 30px;
+}
+.signup-form .form-group {
+	margin-bottom: 20px;
+}		
+.signup-form label {
+	font-weight: normal;
+	font-size: 14px;
+}
+.signup-form input[type="checkbox"] {
+	position: relative;
+	top: 1px;
+}
+.signup-form .btn {        
+	font-size: 16px;
+	font-weight: bold;
+	background:#003380;
+	border: none;
+	min-width: 200px;
+}
+.signup-form .btn:hover, .signup-form .btn:focus {
+	background: blue !important;
+	outline: none;
+}
+.signup-form a {
+	color: #003380;		
+}
+.signup-form a:hover {
+	text-decoration: underline;
+}
+#div1{
+  font-size: 15px;
+}
+#div1 a{
+  text-decoration: none;
+}
+#title{
+  position: absolute;
+  top: 100px;
+  left: 300px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  color: lightsalmon;
+}
+#title #t1{
+  font-size: 6vw;
+}
+#title #t2{
+  font-size: 6vw;
+}
+#l-div1{
+  font-size: 20px;
+}
+#l-div1 a{
+  text-decoration: none;
+}
+#l-div1 a:hover{
+  background-color: #003380;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+}
+#l-form{
+  position: absolute;
+  right: -30%;
+  top: 10%;
+}
+#l-footer{
+  text-align: center;
+  position: absolute;
+  bottom: 10%;
+  left: 5%;
+  background-color:grey;
+  border: 2px solid gray;
+  border-radius: 25px;
+  padding: 25px;
+  color: white;
+}
+#l-footer p{
+  font-size: 16px;
+}
