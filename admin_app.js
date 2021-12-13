@@ -3,6 +3,8 @@ const app=express();
 var fs=require('fs');
 const port =process.env.PORT || 5050;
 const exphb=require('express-handlebars');
+
+var hbs=require('handlebars');
 const bodyParser=require('body-parser');
 const mysql=require('mysql');
 require('dotenv').config();
@@ -11,8 +13,10 @@ app.use(bodyParser.json());
 const path= require('path');
 const engine=require('express-handlebars');
 var hbs=require('handlebars');
-
-
+const routes=require('./services/routes/admin');
+app.use('/',routes);
+app.use(express.static('services'));
+app.use(express.static('style'))
 // Templating Engine
 app.engine('hbs', engine({extname:'.hbs'}));
 app.set('view engine','hbs');
@@ -23,21 +27,36 @@ hbs.registerHelper('date',require('helper-date'));
      if(list.indexOf(elem)>-1){
          return options.fn(this);
      }
+    else{
      return options.inverse(this);
+    }
  });
 
+<<<<<<< HEAD:app.js
 hbs.registerHelper('ifcheck',function(x,op,y,options){
   switch(op){
         case '>':
           return (x.length>y) ? options.fn(this):options.inverse(this);
         case '==':
             return (x==y) ? options.fn(this):options.inverse(this);
+=======
+ 
+hbs.registerHelper('ifcheck', (x,op,y,options)=> {
+    switch(op){
+        case '>':
+            return (x.length>y) ? options.fn(this) : options.inverse(this);
+        case '<':
+            return (x.length<y) ? options.fn(this) : options.inverse(this);
+        case '==':
+            return (x.length==y) ? options.fn(this) : options.inverse(this);
+        case '!=':
+            return (x.length!=y) ? options.fn(this) : options.inverse(this);
+>>>>>>> 21844856fb316134ce2e7da00e4a1967d685a6c1:admin_app.js
         default:
             return options.inverse(this);
-  }
-});
+    }
+})
 
-const routes=require('./services/routes/user');
 app.use('/',routes);
 app.use(express.static('services'));
 app.listen(port,()=>console.log(`Listening to ${port} port`));
