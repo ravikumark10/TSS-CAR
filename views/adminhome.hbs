@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    
+    <title> TSS Admin </title>
+    <link rel= "stylesheet" href="adminhome.css">
+
+    <link rel= "stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class="bi bi-align-top"></i>
+      <span class="logo_name"> TSS CAR</span>
+    </div>
+      <ul class="nav-links">
+        <li>
+          <button  class="active" onclick="smenu('Dashboard')">
+            <i class='bx bx-grid-alt' ></i>
+            <span class="links_name">Dashboard</span>
+          </button>
+        </li>
+        <li>
+            <button class="active" onclick="smenu('Requests')">
+              <i class="bi bi-hourglass-split"></i>
+              <span class="links_name">Pending Requests</span>
+            </button>
+          </li>
+          <li>
+            <button href="#" class="active" onclick="smenu('Conflicts')">
+              <i class="bi bi-exclamation-triangle"></i>
+              <span class="links_name">Conflicts</span>
+            </button>
+          </li>
+          <li>
+            <button href="#" class="active" onclick="smenu('Approved')">
+              <i class="bi bi-check2-square"></i>
+              <span class="links_name">Approved</span>
+            </button>
+          </li>
+          <li>
+            <button  class="active" onclick="smenu('Returned')">
+              <i class="bi bi-x-circle"></i>
+              <span class="links_name">Returned</span>
+            </button>
+          </li>
+       
+        <li class="log_out">
+          <button class="active">
+            <i class="bi bi-box-arrow-left"></i>
+            <span class="links_name">Log out</span>
+          </button>
+        </li>
+      </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button" >
+        <i class="bi bi-list menubtn"></i>
+        <span class="dashboard" id="headname" >Dashboard</span>
+      </div>
+    </nav>
+
+    <div class="home-content" >
+      <div class="overview-boxes" id="Dashboard">
+        <div class="box">
+          <div>
+            <div class="box-topic">Total Users</div>
+            <div class="number">{{users.0.total}}</div>
+          </div>
+          <div class="indicator">
+            <i class="bi bi-person-plus" style="color:green;"></i>
+          </div>
+          
+        </div>
+        <div class="box">
+          <div>
+            <div class="box-topic">Requests</div>
+            <div class="number">{{requests.length}}</div>
+          </div>
+          <div class="indicator">
+            <i class="bi bi-hourglass-split"></i>
+          </div>
+        </div>
+        <div class="box">
+          <div>
+            <div class="box-topic">Clashed </div>
+            <div class="number">{{conflicts.length}}</div>
+          </div>
+          <div class="indicator"><i class="bi bi-exclamation-triangle"></i></div>
+        </div>
+        <div class="box">
+          <div>
+            <div class="box-topic">Approved</div>
+            <div class="number">{{approved.length}} </div>
+          </div>
+          <div class="indicator">
+            <i class="bi bi-check2-square"></i>
+          </div>
+        </div>
+        
+        <div class="box">
+          <div>
+            <div class="box-topic">Returned</div>
+            <div class="number">{{Notapproved.length}} </div>
+          </div>
+          <div class="indicator">
+            <i class="bi bi-x-circle"></i>
+          </div>
+        </div>
+      </div>
+        <div id="Requests" class="tabcontent">
+    <div class='t1'>
+<table>
+    <tr>
+      <th>Name</th>
+      <th>Department</th>
+      <th>Requesting Hall</th>
+      <th>Timing</th>
+      <th> Date </th>
+      <th>Click to view</th>
+    </tr>
+    {{#each requests}}
+        <form action="/recommendform" method="POST">
+        <input type='hidden' name='id' value={{this.id}}>
+        <tbody>
+    <tr>
+      <td>{{Name}}</td>
+      <td>{{this.Department}}</td>
+      <td>{{this.Hall}}</td>
+      <td>{{this.stime}}<br>to {{this.etime}} </td>
+      <td>{{date this.sdate "YYYY/MM/DD"}}<br>to {{date this.edate "YYYY/MM/DD"}}</td>
+      <td> <button type='submit' NAME='BTN_ACN' >View</button></td>
+    </tr>
+ 
+            </form>
+    {{/each}}
+     </tbody>
+</table>
+    {{#ifcheck requests '==' 0}}
+    <h1>*******No Requests Received yet******</h1>
+    {{/ifcheck}}
+    </div>
+    </div>
+
+    <div id="Conflicts" class="tabcontent">
+        <div class='t1'><table><tr><th>Name</th><th>Department</th><th>Timing</th><th>Date</th><th>Click to View</th></tr>
+        {{#each conflicts}}
+        <form action='/recommendform' method='post'><input type='hidden' name='id' value={{this.id}}>
+        <tr><td> {{this.Name}} </td>
+        <td> {{this.Department}} </td>
+        <td>{{this.stime}} <br>to{{this.etime}} </td>
+        <td> {{this.sdate}}<br>to{{this.edate}} </td>
+        <td><button type='submit' NAME='BTN_ACN' >View</button></td>
+        </tr>
+        </form>
+    {{/each}}
+    </table>
+    {{#ifcheck conflicts '==' 0}}
+    <h1>*********No Conflicts yet********</h1>
+    {{/ifcheck}}
+    </div>
+    </div>
+   
+    <div id="Approved" class="tabcontent">
+        <div class='t1'><table><tr><th>Name</th><th>Department</th><th>Priority</th><th>Purpose</th><th>Level</th><th>Action</th></tr>
+            {{#each approved}}
+            <form action='/Notrecommendform' method='post'>
+            <input type='hidden' name='id' value={{this.id}}>
+            <input type='hidden' name='Name' value='{{this.Name}}'>
+            <input type='hidden' name='Department' value='{{this.Department}}'>
+            <input type='hidden' name='Hall' value='{{this.Hall}}'>
+            <input type='hidden' name='sdate' value='{{this.sdate}}'>
+            <input type='hidden' name='edate' value='{{this.edate}}'>
+            <input type='hidden' name='stime' value='{{this.stime}}'>
+            <input type='hidden' name='etime' value='{{this.etime}}'>
+        <tr><td>{{this.Name}} </td>
+        <td>{{this.Department}} </td>
+        <td> {{this.Purpose}} </td>
+        <td>{{date this.sdate "YYYY/MM/DD"}} to<br>{{date this.edate "YYYY/MM/DD"}}</td>
+        <td>{{this.stime}}to<br>{{this.etime}} </td>
+        <td><button  type='submit'  NAME='BTN_ACN' value='Denied2'>Return</button></td></tr></form>
+    </form>
+    {{/each}}
+    </table>
+    {{#ifcheck approved '==' 0}}
+    <h1 style="background-color:white">*********No Approvals yet********</h1>
+    {{/ifcheck}}
+    </div>
+    </div>
+   
+        <div id="Returned" class="tabcontent">
+            <div class='t1'><table><tr><th>Name</th><th>Department</th><th>Purpose</th><th>Date</th><th>Timing</th><th>Action</th></tr>
+           {{#each Notapproved}}
+           <form action='/Approvemail' method='post'>
+            <input type='hidden' name='id' value={{this.id}}>
+            <input type='hidden' name='Name' value={{this.Name}}>
+            <input type='hidden' name='Department' value={{this.Department}}>
+            <input type='hidden' name='Hall' value={{this.Hall}}>
+        <tr>
+        <td>{{this.Name}} </td>
+        <td>{{this.Department}} </td>
+        <td> {{this.Purpose}} </td>
+        <td>{{date this.sdate "YYYY/MM/DD"}} to<br>{{date this.edate "YYYY/MM/DD"}}</td>
+        <td>{{this.stime}}to<br>{{this.etime}} </td>
+        <td><button  type='submit' NAME='BTN_ACN' value='accept2'>Approve</button></td>
+        </tr></form>
+            {{/each}}
+            </table>
+    {{#ifcheck Notapproved '==' 0}}
+    <h1>*********No Cancellations yet********</h1>
+    {{/ifcheck}}
+           </div>
+           </div>
+</div>
+  </section>
+  <script>
+   let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".menubtn");
+sidebarBtn.onclick = function() {
+  sidebar.classList.toggle("active");
+  if(sidebar.classList.contains("active")){
+  sidebarBtn.classList.replace("bi-list" ,"bi-list-nested");
+}else
+  sidebarBtn.classList.replace("bi-list-nested", "bi-list");
+}
+
+function smenu(idName) {
+        var i, tabcontent;
+        document.getElementById('headname').innerHTML=idName;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        dashboard=document.getElementById('Dashboard');
+        dashboard.style.display="none";
+        if (idName=="Dashboard"){
+          document.getElementById(idName).style.display = "flex";
+        }
+        else{
+          document.getElementById(idName).style.display = "block";
+        }
+    }
+ </script>
+
+</body>
+</html>
