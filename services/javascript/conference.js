@@ -42,6 +42,7 @@
   function showHide() {
     var div = document.getElementById("c-form");
     div.style.display="block";
-    
+    var div1 = document.getElementById("c-b-h");
+    div1.style.display="none";
   }
   

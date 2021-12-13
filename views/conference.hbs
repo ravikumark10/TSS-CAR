@@ -58,15 +58,17 @@
         <div id="red"><img src="../images/red.png"><p>-Available</p></div>
     </div>
     <div  id="c-c-d"><p>Date:</p><p>{{date formattedDate "DD/MM/YYYY"}}</p> </div>
-    <div id="c-timechart">
+    
+  </div>
+  
+  <div id="c-click">
+    <button id="c-b-h" onclick="showHide()">Click here to book conference hall</button>
+  </div>
+  {{/ifcheck}}
+  <div id="c-timechart">
       {{#each result}}
             <div style="{{#ifIn this ../request}}background-color:orange{{/ifIn}}{{#ifIn this ../approve}}background-color:red{{/ifIn}}">{{this}}</div>
       {{/each}}
-    </div>
-  </div>
-  {{/ifcheck}}
-  <div id="c-click">
-    <button onclick="showHide()">Click here to book conference hall</button>
   </div>
       <style media="screen">
       *,

@@ -13,7 +13,8 @@ app.use(bodyParser.json());
 const path= require('path');
 const engine=require('express-handlebars');
 var hbs=require('handlebars');
-const routes=require('./services/routes/admin');
+//const routes=require('./services/routes/admin');
+const routes=require('./services/routes/user');
 app.use('/',routes);
 app.use(express.static('services'));
 app.use(express.static('style'))
@@ -40,7 +41,7 @@ hbs.registerHelper('ifcheck', (x,op,y,options)=> {
         case '<':
             return (x.length<y) ? options.fn(this) : options.inverse(this);
         case '==':
-            return (x.length==y) ? options.fn(this) : options.inverse(this);
+            return (x==y) ? options.fn(this) : options.inverse(this);
         case '!=':
             return (x.length!=y) ? options.fn(this) : options.inverse(this);
         default:
