@@ -38,12 +38,10 @@
    navLinks.classList.toggle("show3");
   }
 
-  //date and time chart status
-  function showstatus(){
-    var div1=document.getElementById("chart");
-      if(div1.style.display==="none"){
-          div1.style.display="block";
-      }
-      
+  //show booking form
+  function showHide() {
+    var div = document.getElementById("c-form");
+    div.style.display="block";
+    
   }
   

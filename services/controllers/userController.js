@@ -99,42 +99,55 @@ exports.homepage=(req,res)=>{
 exports.home=(req,res)=>{
     res.render('main');
 }
+
+var timechart=[];
+var request1=[];
+var approve1=[];
+var date_val;
+var x_val=0;
+global.request=request1;
+global.approve=approve1;
+global.formattedDate=date_val;
+global.result=timechart;
+global.x=x_val;
 //view conference hall
 exports.conferencehall=(req,res)=>{
-    //date show function
-    var formattedDate = new Date();
-    console.log(formattedDate);
-    res.render('conference',{formattedDate});
+    res.render('conference',{formattedDate,request,approve,result,x});
 }
 
 //to display date values for conference hall
 exports.datecall=(req,res)=>{
     var value_date=req.body.Date;
-    formattedDate=new Date(value_date);
+    date_val=new Date(value_date);
+    formattedDate=date_val;
     console.log(value_date);
+    x_val=1;
+    x=x_val;
     //res.render('conference',{formattedDate});
     
     pool.getConnection((err,connection)=>{
-        
+        timechart=["07:00 AM","08:00 AM","09:00 AM","10:00 AM","11:00 AM","12:00 PM","01:00 PM","02:00 PM","03:00 PM","04:00 PM","05:00 PM","06:00 PM","07:00 PM","08:00 PM","09:00 PM"];
+        result=timechart;
         var sql1=`SELECT stime,etime FROM booking WHERE hall='conference' AND admin='none'  AND sdate='${value_date}'`;
         var sql2=`SELECT stime,etime FROM booking WHERE hall='conference' AND admin='Approved' AND sdate='${value_date}'`;
-        var result=["07:00 AM","08:00 AM","09:00 AM","10:00 AM","11:00 AM","12:00 PM","01:00 PM","02:00 PM","03:00 PM","04:00 PM","05:00 PM","06:00 PM","07:00 PM","08:00 PM","09:00 PM"];
          connection.query(sql1,(err,result1)=>{
             if (err) throw err;
-            var request=[];
-            var approve=[];
+             request1=[];
+             approve1=[];
             connection.query(sql2,(err,result2)=>{
                 if(result1.length>0){
-                     request.push(result1[0].stime);
-                     request.push(result1[0].etime);
-                     console.log("request:"+request);
+                     request1.push(result1[0].stime);
+                     request1.push(result1[0].etime);
+                     console.log("request:"+request1);
                   }
                 else if(result2.length>0){
-                   approve.push(result2[0].stime);
-                   approve.push(result2[0].etime);
-                   console.log("approve:"+approve);
+                   approve1.push(result2[0].stime);
+                   approve1.push(result2[0].etime);
+                   console.log("approve:"+approve1);
                 }
-                res.render('conference',{request,approve,result,formattedDate});
+                request=request1;
+                approve=approve1;
+                res.redirect('/conference');
              })
          });
     })

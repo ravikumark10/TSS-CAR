@@ -6,6 +6,9 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <script src="../javascript/conference.js"></script>
+         <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
      <title>Conference</title>
    </head>
 <body>
@@ -43,11 +46,12 @@
         <form action="/datedisplay" method="post">
             <label>Select date:</label>
             <input type="date" name="Date"><br>
-            <button onclick="showstatus()" type="submit">Check</button>
+            <button  type="submit">Check</button>
         </form>
     </div>  
     </div>
-  <div id="chart" style="display: none;">
+    {{#ifcheck x '==' 1}}
+  <div id="chart">
     <div id="c-status">
         <div id="green"><img src="../images/green.png"><p>-Available</p></div>
         <div id="orange"><img src="../images/orange.png"><p>-Requested</p></div>
@@ -60,5 +64,155 @@
       {{/each}}
     </div>
   </div>
+  {{/ifcheck}}
+  <div id="c-click">
+    <button onclick="showHide()">Click here to book conference hall</button>
+  </div>
+      <style media="screen">
+      *,
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
+
+#c-form{
+    height: 650px;
+    width: 400px;
+    background-color: grey;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 55%;
+    left: 80%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+}
+#c-form *{
+    font-family: 'Poppins',sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+#c-form h3{
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+}
+
+#c-form label{
+    display: block;
+    margin-top: 13px;
+    font-size: 14px;
+    font-weight: 500;
+}
+#c-form input{
+    display: block;
+    height: 35px;
+    width: 100%;
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+}
+#c-form select{
+      display: block;
+    height: 35px;
+    width: 100%;
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+}
+::placeholder{
+    color: #e5e5e5;
+}
+#c-form button{
+    margin-top: 30px;
+    width: 90%;
+    background-color: #ffffff;
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#c-form option{
+  background-color: #080710;
+}
+#c-form ::placeholder{
+  color: white;
+}
+
+ </style>
+    <form style="display: none;" id="c-form">
+        <h3>Booking Details</h3>
+        <input id="name" type="text" name="Name" id="1" placeholder="Name"  required/>
+        <select  name="Department" id="2" required>
+        <option value="">Department</option>
+        <option value="IT">IT</option>
+        <option value="CSE">CSE</option>
+        <option value="Mechatronics">Mechatronics</option>
+        <option value="Mechanical">Mechanical</option>
+        <option value="Civil">Civil</option>
+        <option value="ECE">ECE</option>
+        <option value="EEE">EEE</option>
+      </select>
+      <select id="3" name="Purpose" required>
+      <option value="">Purpose </option>
+      <option>Meeting</option>
+      <option>Video Conferencing</option>
+      <option>Project Review</option>
+      <option>Webminar</option>
+      <option>Others</option>
+      </select>
+      <label>Start-Date: </label>
+      <input type="date" name="sdate" id="5" required />
+      <label>End-Date: </label>
+      <input type="date" name="edate" id="6" required />
+      <label>Start-Time</label>
+      <select id="7" name="stime" required onblur="emptyField()">
+          <option value="">Starting Time</option>
+          <option>07:00 AM</option>
+          <option>08:00 AM</option>
+          <option>09:00 AM</option>
+          <option>10:00 AM</option>
+          <option>11:00 AM</option>
+          <option>12:00 PM</option>
+          <option>01:00 PM</option>
+          <option>02:00 PM</option>
+          <option>03:00 PM</option>
+          <option>04:00 PM</option>
+          <option>05:00 PM</option>
+        </select>
+        <label>End-Time</label>
+        <select id="8" name="etime" required onblur="emptyField()">
+          <option value="">Ending Time</option>
+          <option>08:00 AM</option>
+          <option>09:00 AM</option>
+          <option>10:00 AM</option>
+          <option>11:00 AM</option>
+          <option>12:00 PM</option>
+          <option>01:00 PM</option>
+          <option>02:00 PM</option>
+          <option>03:00 PM</option>
+          <option>04:00 PM</option>
+          <option>05:00 PM</option>
+        </select>
+        <button>Book</button>
+    </form>
 </body>
 </html>

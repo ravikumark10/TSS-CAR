@@ -28,8 +28,10 @@ hbs.registerHelper('date',require('helper-date'));
 
 hbs.registerHelper('ifcheck',function(x,op,y,options){
   switch(op){
-      case '>':
+        case '>':
           return (x.length>y) ? options.fn(this):options.inverse(this);
+        case '==':
+            return (x==y) ? options.fn(this):options.inverse(this);
         default:
             return options.inverse(this);
   }
