@@ -9,7 +9,7 @@ body{
   text-overflow: ellipsis;
   overflow: hidden;
 	font-family: 'Roboto', sans-serif;
- background-color:#080710;
+ background-color:rgb(149, 177, 149);
 }
 nav{
   position: fixed;
@@ -18,7 +18,7 @@ nav{
   width: 100%;
   height: 100%;
   height: 70px;
-  background: #284324;
+  background: #373b69;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   z-index: 99;
 }
@@ -83,7 +83,7 @@ nav .navbar .links li .sub-menu{
   top: 70px;
   left: 0;
   line-height: 40px;
-  background: #284324;
+  background: #373b69;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   border-radius: 0 0 4px 4px;
   display: none;
@@ -141,7 +141,7 @@ nav .navbar .links li:hover .js-sub-menu{
   top: 65px;
   opacity: 1;
   pointer-events: auto;
-  background: #284324;
+  background: #373b69;
 }
 
 .navbar .nav-links .sidebar-logo{
@@ -181,7 +181,7 @@ nav .navbar .links li:hover .js-sub-menu{
     display: block;
     max-width: 270px;
     width: 100%;
-    background:  #284324;
+    background:  #373b69;
     line-height: 40px;
     padding: 20px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
@@ -338,14 +338,14 @@ nav .navbar .links li .sub-menu li{
 }
 #c-status p{
   padding-top: 5px;
-  color:white;
+  color:black;
 }
 #c-c-d{
   position: absolute;
   top: 51%;
   left: 9.5%;
   display: flex;
-  border: 2px solid white;
+  border: 2px solid black;
   border-collapse: collapse;
   background-color: #003380;
   color: white;
@@ -379,7 +379,7 @@ nav .navbar .links li .sub-menu li{
   top: 93%;
   left: 25%;
   border:none;
-  background-color: #080710;
+  background-color: rgb(149, 177, 149);
   color: white;
   cursor: pointer;
   font-size: 120%;
@@ -389,9 +389,27 @@ nav .navbar .links li .sub-menu li{
   font-size: 20px;
   }
   @keyframes blinking{
-  0%{   color: white;   }
-  47%{   color: blue; }
+  0%{   color: blue;   }
+  47%{   color: #003380; }
   62%{   color: transparent; }
   97%{   color:transparent; }
   100%{  color: wheat;   }
+  }
+  #c-floor{
+    display: flex;
+    position: absolute;
+    top: 30%;
+    left: 100%;
+  }
+  #c-ss-d #c-floor label{
+    margin-top: 4px;
+    width: 100px;
+  }
+  #c-ss-d label{
+    width: 100%;
+  }
+  #c-floor select{
+    border: 2px solid gray;
+    border-radius: 5px;
+    height: 30px;
   }

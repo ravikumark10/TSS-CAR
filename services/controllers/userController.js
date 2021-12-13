@@ -74,7 +74,7 @@ exports.login_form=(req,res)=>{
                 if(err) throw err;
                 if(rows.length>0){
                     alert("login valid");
-                    res.redirect('homepage');
+                    res.redirect('/homepage');
                 }
                 else if(rows1.length>0){
                     alert("login valid");
@@ -91,46 +91,37 @@ exports.login_form=(req,res)=>{
         })     
 }
 
-//view home page
-exports.homepage=(req,res)=>{
-    res.sendFile(path.join(__dirname+'/home.html'));
 
-}
-exports.home=(req,res)=>{
-    res.render('main');
-}
-
+//declaration global variable for conference hall
 var timechart=[];
 var request1=[];
 var approve1=[];
-var date_val;
-var x_val=0;
+//var x_val=0;
 global.request=request1;
 global.approve=approve1;
-global.formattedDate=date_val;
 global.result=timechart;
-global.x=x_val;
+//global.x=x_val;
+global.x=0;
+global.date_val="";
+var result=["07:00 AM","08:00 AM","09:00 AM","10:00 AM","11:00 AM","12:00 PM","01:00 PM","02:00 PM","03:00 PM","04:00 PM","05:00 PM","06:00 PM","07:00 PM","08:00 PM","09:00 PM"];
 //view conference hall
 exports.conferencehall=(req,res)=>{
-    res.render('conference',{formattedDate,request,approve,result,x});
+    console.log(date_val);
+    res.render('conference',{date_val,request,approve,result,x});
 }
 
 //to display date values for conference hall
 exports.datecall=(req,res)=>{
     var value_date=req.body.Date;
-    date_val=new Date(value_date);
-    formattedDate=date_val;
-    console.log(value_date);
-    x_val=1;
-    x=x_val;
+    global.date_val=value_date;
+    console.log(date_val); 
     //res.render('conference',{formattedDate});
     
     pool.getConnection((err,connection)=>{
-        timechart=["07:00 AM","08:00 AM","09:00 AM","10:00 AM","11:00 AM","12:00 PM","01:00 PM","02:00 PM","03:00 PM","04:00 PM","05:00 PM","06:00 PM","07:00 PM","08:00 PM","09:00 PM"];
-        result=timechart;
         var sql1=`SELECT stime,etime FROM booking WHERE hall='conference' AND admin='none'  AND sdate='${value_date}'`;
         var sql2=`SELECT stime,etime FROM booking WHERE hall='conference' AND admin='Approved' AND sdate='${value_date}'`;
-         connection.query(sql1,(err,result1)=>{
+        connection.query(sql1,(err,result1)=>{
+            global.x=1
             if (err) throw err;
              request1=[];
              approve1=[];
@@ -153,7 +144,7 @@ exports.datecall=(req,res)=>{
     })
 }
 
-/*
+
 //hall booking register
 exports.hallbook=(req,res)=>{
     const id=Math.round(Math.random() * (100-10)+10);
@@ -212,7 +203,7 @@ exports.hallbook=(req,res)=>{
         if(!err){
             console.log("Data inserted");
             alert("hall booked successfully");
-            res.render('conference');
+            res.redirect('conference');
         }
         else{
             console.log(err);
@@ -220,36 +211,50 @@ exports.hallbook=(req,res)=>{
         
     });
 }
-
+//declaration global variable for classroom
+var c_timechart=[];
+var c_request1=[];
+var c_approve1=[];
+global.c_request=c_request1;
+global.c_approve=c_approve1;
+global.c_formattedDate="";
+global.c_result=c_timechart;
+var c_result=["07:00 AM","08:00 AM","09:00 AM","10:00 AM","11:00 AM","12:00 PM","01:00 PM","02:00 PM","03:00 PM","04:00 PM","05:00 PM","06:00 PM","7:00 PM","8:00 PM","9:00 PM"];
+//view classroom
+exports.classroom=(req,res)=>{
+    res.render('classroom',{c_formattedDate,c_result,c_approve,c_request});
+}
 
 //to display date values for classroom
 exports.datecall1=(req,res)=>{
-    var value_date=req.body.Date;
-    formattedDate=new Date(value_date);
-    console.log(value_date);
+    c_date_val=req.body.Date;
+    global.c_formattedDate=c_date_val;
+    console.log(c_date_val);
     //res.render('conference',{formattedDate});
-    
+    c_val=1;
+    c=c_val;
     pool.getConnection((err,connection)=>{
         
-        var sql1=`SELECT stime,etime FROM classroom WHERE hall='classroom' AND admin='none'  AND sdate='${value_date}'`;
-        var sql2=`SELECT stime,etime FROM classroom WHERE hall='classroom' AND admin='Approved' AND sdate='${value_date}'`;
-        var result=["07:00 AM","08:00 AM","09:00 AM","10:00 AM","11:00 AM","12:00 PM","01:00 PM","02:00 PM","03:00 PM","04:00 PM","05:00 PM","06:00 PM","7:00 PM","8:00 PM","9:00 PM"];
-         connection.query(sql1,(err,result1)=>{
+        var sql1=`SELECT stime,etime FROM classroom WHERE hall='classroom' AND admin='none'  AND sdate='${c_date_val}'`;
+        var sql2=`SELECT stime,etime FROM classroom WHERE hall='classroom' AND admin='Approved' AND sdate='${c_date_val}'`;
+        connection.query(sql1,(err,result1)=>{
             if (err) throw err;
-            var request=[];
-            var approve=[];
+            c_request1=[];
+            c_approve1=[];
             connection.query(sql2,(err,result2)=>{
                 if(result1.length>0){
-                     request.push(result1[0].stime);
-                     request.push(result1[0].etime);
-                     console.log("request:"+request);
+                     c_request1.push(result1[0].stime);
+                     c_request1.push(result1[0].etime);
+                     console.log("request:"+c_request1);
                   }
                 else if(result2.length>0){
-                   approve.push(result2[0].stime);
-                   approve.push(result2[0].etime);
-                   console.log("approve:"+approve);
+                   c_approve1.push(result2[0].stime);
+                   c_approve1.push(result2[0].etime);
+                   console.log("approve:"+c_approve1);
                 }
-                res.render('classroom',{request,approve,result,formattedDate});
+                c_request=c_request1;
+                c_approve=c_approve1;
+                res.redirect('/classroom');
              })
          });
     })
@@ -313,7 +318,7 @@ exports.classroombook=(req,res)=>{
         if(!err){
             console.log("Data inserted");
             alert("classroom booked successfully");
-            res.render('classroom');
+            res.redirect('classroom');
         }
         else{
             console.log(err);
@@ -322,14 +327,20 @@ exports.classroombook=(req,res)=>{
     });
 }
 
-//view classroom
-exports.classroom=(req,res)=>{
-    //date show function
-    var formattedDate = new Date();
-    console.log(formattedDate);
-    res.render('classroom',{formattedDate});
+//view home page
+exports.homepage=(req,res)=>{
+    res.sendFile(path.join(__dirname+'/home.html'));
+
+}
+exports.home=(req,res)=>{
+    res.render('main');
 }
 
+//view lab page
+exports.labs=(req,res)=>{
+    res.sendFile(path.join(__dirname+'/labs.html'));
+
+}
 //view admin home page
 exports.seminaradmin=(req,res)=>{
     res.sendFile(path.join(__dirname+'/seminaradmin.html'));
@@ -337,7 +348,6 @@ exports.seminaradmin=(req,res)=>{
 
 //logout
 exports.logout=(req,res)=>{
-    res.sendFile(path.join(__dirname+'/index.html'));
+    res.redirect('/loginform');
 
 }
-*/

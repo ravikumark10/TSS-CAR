@@ -17,7 +17,7 @@ var hbs=require('handlebars');
 const routes=require('./services/routes/user');
 app.use('/',routes);
 app.use(express.static('services'));
-app.use(express.static('style'))
+app.use(express.static('style'));
 // Templating Engine
 app.engine('hbs', engine({extname:'.hbs'}));
 app.set('view engine','hbs');

@@ -38,17 +38,26 @@
     </div>
   </nav>
   <div id="c-head">
-    <h2>Conference Hall Booking</h2>
+    <h2>Classroom Booking</h2>
   </div>
   <div id="c-s-date">
-    <h3>Conference Hall Time Chart</h3>
+    <h3>Classroom Time Chart</h3>
     <div id="c-ss-d">
-        <form action="/datedisplay" method="post">
+        <form action="/datedisplay1" method="post">
             <label>Select date:</label>
             <input type="date" name="Date"><br>
+            <div id="c-floor">
+            <label>Select floor:</label>
+            <select name="floor" required>
+            <option>Select</option>
+            <option>Ground Floor</option>     
+            <option>First Floor</option>            
+            </select>
+            </div>  
             <button  type="submit">Check</button>
         </form>
-    </div>  
+    </div> 
+              
     </div>
   <div id="chart">
     <div id="c-status">
@@ -56,16 +65,16 @@
         <div id="orange"><img src="../images/orange.png"><p>-Requested</p></div>
         <div id="red"><img src="../images/red.png"><p>-Already booked</p></div>
     </div>
+    <div  id="c-c-d"><p>Date:</p><p>{{date c_formattedDate "DD/MM/YYYY"}}</p> </div>
     
-    </div>
-  <div  id="c-c-d"><p>Date:{{date date_val "DD/MM/YYYY"}}</p> </div>
+  </div>
+  
   <div id="c-click">
     <button id="c-b-h" onclick="showHide()">Click here to book conference hall</button>
   </div>
-  
   <div id="c-timechart">
-      {{#each result}}
-            <div style="{{#ifIn this ../request}}background-color:orange{{/ifIn}}{{#ifIn this ../approve}}background-color:red{{/ifIn}}">{{this}}</div>
+      {{#each c_result}}
+            <div style="{{#ifIn this ../c_request}}background-color:orange{{/ifIn}}{{#ifIn this ../c_approve}}background-color:red{{/ifIn}}">{{this}}</div>
       {{/each}}
   </div>
       <style media="screen">
@@ -81,7 +90,7 @@
 
 
 #c-form{
-    height: 650px;
+    height: 680px;
     width: 400px;
     background-color: lightslategrey;
     position: absolute;
@@ -146,7 +155,7 @@
     color: #080710;
     padding: 15px 0;
     font-size: 18px;
-    font-weight: 300;
+    font-weight: 600;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -158,7 +167,7 @@
 }
 
  </style>
-    <form action="/hallbook" method="post" style="display: none;" id="c-form">
+    <form action="/classroombook" method="post" style="display: none;" id="c-form">
         <h3>Booking Details</h3>
         <input id="name" type="text" name="Name" id="1" placeholder="Name"  required/>
         <select  name="Department" id="2" required>
@@ -179,6 +188,11 @@
       <option>Webminar</option>
       <option>Others</option>
       </select>
+     <select  name="floor" required>
+        <option>Floor</option>
+        <option>Ground Floor Classroom</option>
+        <option>First Floor Classroom</option>
+    </select>
       <label>Start-Date: </label>
       <input type="date" name="sdate" id="5" required />
       <label>End-Date: </label>
@@ -212,7 +226,7 @@
           <option>04:00 PM</option>
           <option>05:00 PM</option>
         </select>
-        <button type="submit" value="submit">Book</button>
+        <button>Book</button>
     </form>
 </body>
 </html>
