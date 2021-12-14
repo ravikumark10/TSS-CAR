@@ -15,7 +15,9 @@ const engine=require('express-handlebars');
 var hbs=require('handlebars');
 //const routes=require('./services/routes/admin');
 const routes=require('./services/routes/user');
+const routes1=require('./services/routes/admin');
 app.use('/',routes);
+app.use('/',routes1);
 app.use(express.static('services'));
 app.use(express.static('style'));
 // Templating Engine

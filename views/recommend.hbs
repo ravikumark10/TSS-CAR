@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <script> document.title="View"</script>
+    <link rel= "stylesheet" href="../style/recommend.css">
+    <link rel= "stylesheet" href= "../style/adminhome.css">
+    
+    <link rel= "stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class="bi bi-align-top"></i>
+      <span class="logo_name"> TSS CAR</span>
+    </div>
+      <ul class="nav-links">
+        <li>
+          <a class="active" href="/adminhome" >
+            <i class='bx bx-grid-alt' ></i>
+            <span class="links_name">Dashboard</span>
+          </a>
+        </li>
+        
+       
+        <li class="log_out">
+          <button class="active">
+            <i class="bi bi-box-arrow-left"></i>
+            <span  class="links_name">Log out</span>
+          </button>
+        </li>
+      </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button" >
+        <i class="bi bi-list menubtn"></i>
+        <span class="dashboard" id="headname" >Approve or Return</span>
+      </div>
+    </nav>
+
+    <div class="home-content" ></div>
+    <div id="Logs" class="tabcontent">
+      <div class='t1'><table align='left'><tr><th>Name</th><th>Department</th><th>Hall</th><th>Purpose</th><th>Date</th><th>Time</th></tr>
+      {{#each waiting}}
+      
+      <tr><td>{{Name}} </td><td>{{Department}}  </td><td> {{Hall}} </td><td>{{Purpose}} </td><td> {{date sdate "DD/MM/YYYY"}} <br>{{date edate "DD/MM/YYYY"}} </td><td>{{stime}} to {{etime}}</td></tr>
+      {{/each}}
+      <tr class="noborder"><td></td><td></td>
+      <td><form action='/Approvemail' method='post'>
+      <input type='hidden' name='Name' value={{waiting.0.Name}}>
+      <input type='hidden' name='Department' value={{waiting.0.Department}}>
+      <input type='hidden' name='id' value={{waiting.0.id}}>
+      <input type='hidden' name='Hall' value={{waiting.0.Hall}}>
+      <button type='submit' name='Recommend' value='Approve'> Approve</button>
+          </form></td>
+          <td><form action='/notrecommendform' method='post'>
+          <input type='hidden' name='Name' value={{waiting.0.Name}}>
+          <input type='hidden' name='Department' value={{waiting.0.Department}}>
+          <input type='hidden' name='id' value={{waiting.0.id}}>
+          <input type='hidden' name='Hall' value={{waiting.0.Hall}}>
+          <input type='hidden' name='sdate' value={{waiting.0.sdate}}>
+          <input type='hidden' name='edate' value={{waiting.0.edate}}>
+          <input type='hidden' name='stime' value={{waiting.0.stime}}>
+          <input type='hidden' name='etime' value={{waiting.0.etime}}>
+          <button type='submit' name='Not_Recommend' value='Return'>Return</button>
+          </form></td><td></td><td></td><tr></table></div>
+          </div>
+          <div style="padding-top: 0px"></div>
+          <div>
+              </div>
+      </section>
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+     let sidebarBtn = document.querySelector(".menubtn");
+     sidebarBtn.onclick = function() {
+       sidebar.classList.toggle("active");
+       if(sidebar.classList.contains("active")){
+       sidebarBtn.classList.replace("bi-list" ,"bi-list-nested");
+     }else
+       sidebarBtn.classList.replace("bi-list-nested", "bi-list");
+     }
+      </script>
+     </body>
+     </html>

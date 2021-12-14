@@ -1,0 +1,231 @@
+<html>
+    <head>
+        <title>
+            TVS
+        </title>
+    </head>
+    <style>
+        [class*="col-"] {
+        width: 100%;
+        box-sizing: border-box;
+        float: left;
+        }
+        body{
+            margin: 0%;
+            background-color: #ecf3e5;
+            height: auto;
+        }
+        .header{
+            border-bottom: solid;
+            border-width: 0.1px;
+            background-color: #373b69;
+            border-color: #a6a6a6;
+            font-family: sans-serif;
+            color:white;
+            position: absolute;
+            top: 0%;
+        }
+        .header h2{
+            float:left;
+            padding: 0px 20px;
+        }
+        #e-he{
+            float:right;
+            list-style: none;
+            
+
+        }
+        li,.hel{
+            float: right;
+            padding: 4px 8px;
+            margin:0px 4px;
+            transition: opacity 0.5s;
+        }
+        #e-he .h-h:hover{
+            border: solid;
+            border-width: 1px;
+            border-radius: 10px;
+            border-color:  white;
+            color: white;
+            opacity: 0.5;
+        }
+      
+        .service1{
+            z-index: 3;
+            display: none;
+            position: absolute;
+            right: 5%;
+            color:#666666;
+            margin:5px 0px 0px -8px;
+            background-color: white;
+            border-radius: 20px;
+        }
+        .service1 li{
+            padding: 10px;
+            float: none;
+        }
+        .service1 li:hover{
+            background-color: #373b69;
+            color:white;
+            border: none;
+            border-radius:15px;
+        }
+        .hel:hover .service1{
+            display: block;
+        }
+        .body1{
+            perspective: 1000px;     
+        }
+         
+        .service1 a{
+            text-decoration: none;
+        }
+        #h-logout{
+            color: white;
+        }
+        #h-title{
+            position: absolute;
+            top: 13%;
+            left:400px;
+            font-size: 30px;
+            color: rgb(14, 9, 9);
+        }
+        .e-m{
+            margin-top: 200px;
+            margin-left: 300px;
+            border: 2px solid grey;
+            width: 600px;
+            padding: 15px;
+            background-color: rgb(233, 230, 230);
+            color: rgb(0, 0, 0);
+        }
+        .e-m h2{
+            color: #1e1ef0;
+        }
+        .e-m button{
+          
+            padding: 15px;
+            background-color: rgb(38, 38, 102);
+            border: 2px solid rgb(38, 38, 102);
+            border-radius: 10px;
+            font-weight: 200;
+            color: white;
+            font-size: 16px;
+        }
+        .e-m button:hover{
+            background-color: beige;
+            color:rgb(38, 38, 102);
+            font-size: 18px;
+        }
+        .e-ul{
+            float: left;
+        }
+        h3{
+            color:#1e1ef0;
+        }
+        .e-s{
+            font-weight: bolder;
+            display: block;
+        }
+        #e-ca{
+            margin-left: 80px;
+            font-weight: bolder;
+        }
+        div{
+            float: left;
+            
+        }      
+        button{
+            margin-left: 150px;
+            margin-bottom:50px;
+        } 
+    </style>
+        <body>
+       <div class="header col-12">
+        <h2>TSS CARS SERVICES</h2>
+        
+        <ul id="e-he">
+            <li class="h-h">Report</li>
+            <a id="h-logout" href="/logout"><li class="h-h">logout</li></a>
+            <div class="hel"><div class="service">Service</div>
+            
+                <div class="service1">
+                    <a href="/conference"> <li>Conference Room</li></a>
+                    <a href="/product-lab"><li>Equipments</li></a>
+                    <a href="/classroom"><li>Classroom</li></a>
+                    <a href="/labs"><li>Labs</li></a>
+                    <a><li>Automotive Discovery Center</li></a>
+                </div>
+            </div>
+            <li class="h-h">About</li>
+            <li class="h-h">Home</li>   
+        </ul>
+       </div>
+       <h3 id="h-title">PROTOTYPE MANUFACTURING EQUIPMENTS</h3>
+       <section >
+            <div class="e-m">
+                <h2>CNC LATHE</h2>
+                <h4>Model Name: TUTOR Lathe - ACE DESIGNERS</h4>
+                <h4>Equipment Incharge: Dr.C.Paramasivam</h4>
+                <button onclick="location.href='/equipments'">Book</button>
+                <div class="e-s">
+                    <h3>Specifications</h3>
+                    <p>Swing over bed -500mm</p>
+                    <p>Max turning diameter -270mm</p>
+                    <p>Max turning length -400mm</p>
+                    <p>X axis stroke -150mm</p>
+                    <p>Z axis stroke -400mm</p>
+                    <p>Controller-Fanuc01-Mate-TD</p> 
+                </div>
+                <div id="e-ca">
+                    <h3>Capabilities</h3>
+                    <p>Turning, Threading, Grooving</p>
+                    <p>Drilling, Boring, Step Turning</p>
+                    <p>Chamfering</p>
+                </div>                  
+            </div>    
+            <div class="e-m">
+                <h2>CNC MILLING MACHINE</h2>
+                <h4>Model Name: SPARK Milling - ACE DESIGNERS</h4>
+                <h4>Equipment Incharge: Dr.C.Paramasivam</h4>
+                <button onclick="location.href='/equipments'">Book</button>
+                <div class="e-s">
+                    <h3>Specifications</h3>
+                    <p>X axis stroke - 450mm</p>
+                    <p>Y axis stroke - 350mm</p>
+                    <p>Z axis stroke - 350mm</p>
+                    <p>Table size - 600×400mm</p>
+                    <p>Spindle speed - 2500 rpm</p>
+                    <p>Controller - Fanuc01-Mate-TD</p> 
+                </div>
+                <div id="e-ca">
+                    <h3>Capabilities</h3>
+                    <p>Endmilling, Form milling, Profile milling</p>
+                    <p> Pocketing</p>
+                    <p>Drilling</p>
+                </div>                  
+            </div> 
+            <div class="e-m" style="margin-bottom: 150px;">
+                <h2>CNC MILLING MACHINE</h2>
+                <h4>Model Name: SPARK Milling - ACE DESIGNERS</h4>
+                <h4>Equipment Incharge: Dr.C.Paramasivam</h4>
+                <button onclick="location.href='/equipments'">Book</button>
+                <div class="e-s">
+                    <h3>Specifications</h3>
+                    <p>X axis stroke - 450mm</p>
+                    <p>Y axis stroke - 350mm</p>
+                    <p>Z axis stroke - 350mm</p>
+                    <p>Table size - 600×400mm</p>
+                    <p>Spindle speed - 2500 rpm</p>
+                    <p>Controller - Fanuc01-Mate-TD</p> 
+                </div>
+                <div id="e-ca">
+                    <h3>Capabilities</h3>
+                    <p>Endmilling, Form milling, Profile milling</p>
+                    <p> Pocketing</p>
+                    <p>Drilling</p>
+                </div>                  
+            </div> 
+       </section>
+    </body>
+</html>

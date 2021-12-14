@@ -9,7 +9,7 @@ body{
   text-overflow: ellipsis;
   overflow: hidden;
 	font-family: 'Roboto', sans-serif;
- background-color:rgb(149, 177, 149);
+ background-color:#ecf3e5;
 }
 nav{
   position: fixed;
@@ -289,13 +289,13 @@ nav .navbar .links li .sub-menu li{
   position: absolute;
   top: 15%;
   left: 38%;
-  color: white;
+  color: rgb(14, 9, 9);
 }
 #c-s-date{
   position: absolute;
   top: 30%;
   left: 15%;
-  color: white;
+  color: rgb(14, 9, 9);
   font-weight: bolder;
 }
 #c-s-date #c-ss-d{
@@ -338,7 +338,7 @@ nav .navbar .links li .sub-menu li{
 }
 #c-status p{
   padding-top: 5px;
-  color:black;
+  color:rgb(14, 9, 9);
 }
 #c-c-d{
   position: absolute;
@@ -351,6 +351,7 @@ nav .navbar .links li .sub-menu li{
   color: white;
   width: 315px;
   padding: 5px;
+  box-shadow: 10px 10px 10px grey;
 }
 #c-timechart{
   position: absolute;
@@ -362,14 +363,15 @@ nav .navbar .links li .sub-menu li{
   display: grid;
   grid-template-columns: auto auto auto;
   grid-gap: 10px;
-  border: 2px solid white;
+  border: 2px solid gray;
   background-color:whitesmoke;
   color: white;
   margin: 20px;
   padding: 10px;
+  box-shadow: 10px 10px 10px grey;
 }
 #c-timechart div{
-  border: 2px solid white;
+  border: 2px solid gray;
   border-collapse: collapse;
   padding: 10px;
   background-color: green;
@@ -379,7 +381,7 @@ nav .navbar .links li .sub-menu li{
   top: 93%;
   left: 25%;
   border:none;
-  background-color: rgb(149, 177, 149);
+  background-color:#ecf3e5;
   color: white;
   cursor: pointer;
   font-size: 120%;
@@ -390,10 +392,10 @@ nav .navbar .links li .sub-menu li{
   }
   @keyframes blinking{
   0%{   color: blue;   }
-  47%{   color: #003380; }
+  47%{   color: rgb(14, 9, 9); }
   62%{   color: transparent; }
   97%{   color:transparent; }
-  100%{  color: wheat;   }
+  100%{  color: rgb(0, 0, 0);   }
   }
   #c-floor{
     display: flex;

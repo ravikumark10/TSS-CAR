@@ -9,6 +9,8 @@ const mysql=require('mysql');
 const nodemailer=require('nodemailer');
 const alert=require('alert');
 const { request } = require('express');
+const { YEAR } = require('mysql/lib/protocol/constants/types');
+const QuickChart = require('quickchart-js');
 //Templating Engine for html
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
@@ -23,11 +25,13 @@ const pool=mysql.createPool({
 
 });
 
+
 exports.admin= (req,res)=>{
     //connect to db
-    
     pool.getConnection((err,connection)=>{
        if(err)throw err;
+        var confmonth=[0,0,0,0,0,0,0,0,0,0,0,0];
+        var classmonth=[0,0,0,0,0,0,0,0,0,0,0,0];
        console.log("connect to database "+connection.threadId);
        var row1=[];
        connection.query("SELECT * FROM LOG WHERE ADMIN='none'",(err,requests)=>{
@@ -39,13 +43,66 @@ exports.admin= (req,res)=>{
                    if (err) throw err;
                    connection.query("select * from  log where admin='Not Approved'",(err,Notapproved)=>{
                        if (err) throw err;
-                       connection.query("select COUNT(Email) as total from staff",(err,users)=>{
+                       connection.query("select COUNT(*) as total from log",(err,users)=>{
+                        
+                        var y=new Date().getFullYear();
                         if (err) throw err;
+                        connection.query("select month(sdate) as m,count(*) as c from log where year(sdate)=? and HALL=? group by year(sdate),month(sdate) order by year(sdate),month(sdate)",[y,'conference'],(err,conf)=>{
+                            if (err) throw err;
+                            console.log(conf);
+                            for (let i in conf){
+                                var j =conf[i].m;
+                                confmonth[j-1]=conf[i].c
+                            }
+                            console.log(confmonth);
+                            connection.query("select month(sdate) as m,count(*) as c from log where year(sdate)=? and (HALL=? or HALL=?) group by year(sdate),month(sdate) order by year(sdate),month(sdate)",[y, 'Ground Floor','First Floor'],(err,classroom)=>{
+                                if (err) throw err;
+                        console.log(classroom);
+                        for (let i in classroom){
+                            var j =classroom[i].m;
+                            classmonth[j-1]=classroom[i].c
+                        }
+                        console.log(classmonth)
                         connection.release();
-                        res.render('adminhome',{users,requests,conflicts,approved,Notapproved})
+                        const chart = new QuickChart();
+                        chart.setWidth(480)
+                        chart.setHeight(200);
+
+                        chart.setConfig({
+                        type: 'bar',
+                        data: {
+                            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July','Aug','Sept','Oct','Nov','Dec'],
+                            datasets: [
+                            {
+                                label: 'Conference Hall',
+                                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                                borderColor: 'rgb(255, 99, 132)',
+                                borderWidth: 1,
+                                data: confmonth,
+                            },
+                            {
+                                label:'Classroom',
+                                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                                borderColor: 'rgb(54, 162, 235)',
+                                borderWidth: 1,
+                                data: classmonth,
+                            },
+                            ],
+                        },
+                        options: {
+                            title: {
+                            display: true,
+                            },
+                        
+                        },
+                        });
+                        var confchart=chart.getUrl()
+                        res.render('adminhome',{confchart,users,requests,conflicts,approved,Notapproved})
                        });
                     });
+                   });
            });
+        });
        });
    });
 });
@@ -117,10 +174,10 @@ exports.Returnmail =(req,res)=>{
    TCE Facility Services.</p>`
    connection.query("select id from log where id=? and Name=? and Department=?",[id,Name,Department],(err,result1)=>{
        if (err) throw err;
-       connection.query("select Email from staff where Name=? and Department=?",[Name,Department],(err,result2)=>{
+       connection.query("select email from user_reg where name=? and dept=?",[Name,Department],(err,result2)=>{
            if (err) throw err;
            if (result2.length>0){
-               global.returnEmail=result2[0].Email;
+               global.returnEmail=result2[0].email;
            }
            if (result1.length>0){
                connection.query("UPDATE log SET Admin = 'Not Approved' where id=? and Name=? and Hall=? and Department=?",[id,Name,Hall,Department],(err,result3)=>{
@@ -179,7 +236,7 @@ var approvecontent=`<p>Approval Mail: <br>Hello ${Name}, your ${Hall} hall reque
    TCE Facility Services.</p>`
 connection.query("select id from log where id=? and Name=? and Department=?",[id,Name,Department],(err,result1)=>{
    if (err) throw err;
-connection.query("select Email from staff where Name=? and Department=?",[Name,Department],(err,result2)=>{
+connection.query("select email from user_reg where name=? and dept=?",[Name,Department],(err,result2)=>{
        if (err) throw err;
        if (result2.length>0){
            global.approveEmail=result2[0].Email;

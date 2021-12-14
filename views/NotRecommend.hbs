@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <script> document.title="Return"</script>
+    <link rel= "stylesheet" href="../style/recommend.css">
+    <link rel= "stylesheet" href="../style/adminhome.css">
+    <link rel= "stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class="bi bi-align-top"></i>
+      <span class="logo_name"> TSS CAR</span>
+    </div>
+      <ul class="nav-links">
+        <li>
+          <a class="active" href="/adminhome" >
+            <i class='bx bx-grid-alt' ></i>
+            <span class="links_name">Dashboard</span>
+          </a>
+        </li>
+        
+       
+        <li class="log_out">
+          <button class="active">
+            <i class="bi bi-box-arrow-left"></i>
+            <span  class="links_name">Log out</span>
+          </button>
+        </li>
+      </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button" >
+        <i class="bi bi-list menubtn"></i>
+        <span class="dashboard" id="headname" >Returning The Request</span>
+      </div>
+    </nav>
+<div>
+    {{#each ans}}
+{{/each}}
+        <form action="/Returnmail" method="post">
+            <input type='hidden' name='id' value= {{ans.id}}>
+            <input type='hidden' name='Name' value={{ans.Name}}>
+            <input type='hidden' name='Department' value={{ans.Department}}>
+            <input type='hidden' name='Hall' value={{ans.Hall}}>
+            <div  style="margin:5px;position:fixed;top:100px;" class="t1">
+              <h3>Select Reasons For Returning The Request</h3><br>
+        <table align="center">
+            <tr class="nohover"><td><input type="checkbox" name="Reason1" value="Requested Hall has been booked already. "><span style="padding-right: 10px"></span>Requested Hall has been booked already</td>
+                <td><input type="checkbox" name="Reason2" value="Priority of your request is low, so we returned. "><span style="padding-right: 10px"></span>Priority of your request is low, so we returned</td>
+            <td><input type="checkbox" name="Reason3" value="International Meeting is going to be held. "><span style="padding-right: 10px"></span>International Meeting is going to be held</td>
+        <td><input type="checkbox" name="Reason4" value="High priority meeting is arranged at that day. "><span style="padding-right: 10px"></span>High priority meeting is arranged at that day</td>
+    </tr>
+         </table>
+         <div><br><br>
+         <center><button type="submit" name="Return" value="Return"> Return </button> </center>
+          
+                      </div>
+                </form>
+</div>
+    </body>
+</html>
+</section>
+<script>
+let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".menubtn");
+ sidebarBtn.onclick = function(){
+   sidebar.classList.toggle("active");
+   if(sidebar.classList.contains("active")){
+   sidebarBtn.classList.replace("bi-list" ,"bi-list-nested");
+}else
+   sidebarBtn.classList.replace("bi-list-nested", "bi-list");
+}
+</script>
+</body>
+</html>

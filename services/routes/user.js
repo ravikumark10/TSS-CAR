@@ -6,19 +6,27 @@ router.get('/register',userController.view);
 router.post('/',userController.form_register);
 router.get('/loginform',userController.loginform);
 router.post('/login',userController.login_form);
-router.get('/conference',userController.conferencehall);
 
 router.get('/homepage',userController.homepage);
 router.get('/logout',userController.logout);
-router.post('/hallbook',userController.hallbook);
-router.get('/seminaradmin',userController.seminaradmin);
 router.get('/home',userController.home);
 
+//conference hall booking
+router.get('/conference',userController.conferencehall);
+router.post('/hallbook',userController.hallbook);
 router.post('/datedisplay',userController.datecall);
 
+//classroom booking
 router.get('/classroom',userController.classroom);
 router.post('/datedisplay1',userController.datecall1);
 router.post('/classroombook',userController.classroombook);
-router.get('/labs',userController.labs);
 
+//lab and equipments booking
+router.get('/labs',userController.labs);
+router.get('/product-lab',userController.product_lab);
+router.get('/equipments',userController.equipments);
+router.post('/e_datecall',userController.e_datecall);
+router.post('/equipments_book',userController.equipments_book);
+router.get('/equ-details',userController.equ_details);
+router.get('/adminhome',userController.adminhome);
 module.exports=router;

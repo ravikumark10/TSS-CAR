@@ -1,0 +1,35 @@
+.sidebar .nav-links li a{
+    height: 100%;
+    width: 100%;
+    border:none;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+  }
+.sidebar .nav-links li a.active{
+    background: #081D45;
+    color:white;
+  }
+  .sidebar .nav-links li a:hover{
+    background:grey;
+    border-radius:9px;
+  }
+tr.noborder td{
+    border:0;
+}
+tr.noborder:hover{
+    background-color:inherit;
+}
+tr.nohover:hover{
+  background-color:inherit;
+}
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  padding: 10px;
+}

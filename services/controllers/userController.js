@@ -49,7 +49,6 @@ exports.form_register=(req,res)=>{
 
         if(!err){
             console.log("Data inserted");
-            alert("Registered successfully");
             res.redirect('loginform');
         }
         else{
@@ -71,17 +70,13 @@ exports.login_form=(req,res)=>{
 
         connection.query('SELECT * FROM user_reg WHERE email=? AND password=?',[username,password],(err,rows)=>{
             connection.query('SELECT * FROM admin WHERE email=? AND password=?',[username,password],(err,rows1)=>{
-                if(err) throw err;
                 if(rows.length>0){
-                    alert("login valid");
                     res.redirect('/homepage');
                 }
                 else if(rows1.length>0){
-                    alert("login valid");
-                    res.redirect('seminaradmin');
+                    res.redirect('/adminhome');
                 }
                 else{
-                    alert("login Invalid");
                     res.redirect('loginform');
                 } 
             })
@@ -118,8 +113,8 @@ exports.datecall=(req,res)=>{
     //res.render('conference',{formattedDate});
     
     pool.getConnection((err,connection)=>{
-        var sql1=`SELECT stime,etime FROM booking WHERE hall='conference' AND admin='none'  AND sdate='${value_date}'`;
-        var sql2=`SELECT stime,etime FROM booking WHERE hall='conference' AND admin='Approved' AND sdate='${value_date}'`;
+        var sql1=`SELECT stime,etime FROM log WHERE hall='conference' AND Admin='none'  AND sdate='${value_date}'`;
+        var sql2=`SELECT stime,etime FROM log WHERE hall='conference' AND Admin='Approved' AND sdate='${value_date}'`;
         connection.query(sql1,(err,result1)=>{
             global.x=1
             if (err) throw err;
@@ -127,13 +122,15 @@ exports.datecall=(req,res)=>{
              approve1=[];
             connection.query(sql2,(err,result2)=>{
                 if(result1.length>0){
-                     request1.push(result1[0].stime);
-                     request1.push(result1[0].etime);
+                    var n1=result.indexOf(result1[0].stime);
+                     var n2=result.indexOf(result1[0].etime);
+                     request1=result.slice(n1,n2+1);
                      console.log("request:"+request1);
                   }
                 else if(result2.length>0){
-                   approve1.push(result2[0].stime);
-                   approve1.push(result2[0].etime);
+                    var n1=result.indexOf(result2[0].stime);
+                    var n2=result.indexOf(result2[0].etime);
+                    approve1=result.slice(n1,n2+1);
                    console.log("approve:"+approve1);
                 }
                 request=request1;
@@ -145,7 +142,7 @@ exports.datecall=(req,res)=>{
 }
 
 
-//hall booking register
+// conference hall booking register
 exports.hallbook=(req,res)=>{
     const id=Math.round(Math.random() * (100-10)+10);
     const hall='conference';
@@ -168,7 +165,7 @@ exports.hallbook=(req,res)=>{
         if(err)throw err;
         console.log("connect to database "+connection.threadId);
         //const result=connection.query('INSERT INTO booking (id,name,department,hall,purpose,stime,etime,admin) VALUES('+id+','+Name+','+Department+','+"conference"+','+Purpose+','+stime+','+etime+','+"none"+')');
-        connection.query('INSERT INTO booking SET id=?,name=?,department=?,hall=?,purpose=?,sdate=?,edate=?,stime=?,etime=?,admin=?',[id,Name,Department,hall,Purpose,sdate,edate,stime,etime,adm]);
+        connection.query('INSERT INTO log SET id=?,Name=?,Department=?,Hall=?,Purpose=?,sdate=?,edate=?,stime=?,etime=?,Admin=?',[id,Name,Department,hall,Purpose,sdate,edate,stime,etime,adm]);
         
         //to send mail
         let transporter = nodemailer.createTransport({
@@ -202,7 +199,6 @@ exports.hallbook=(req,res)=>{
         connection.release();
         if(!err){
             console.log("Data inserted");
-            alert("hall booked successfully");
             res.redirect('conference');
         }
         else{
@@ -211,6 +207,7 @@ exports.hallbook=(req,res)=>{
         
     });
 }
+
 //declaration global variable for classroom
 var c_timechart=[];
 var c_request1=[];
@@ -230,26 +227,29 @@ exports.datecall1=(req,res)=>{
     c_date_val=req.body.Date;
     global.c_formattedDate=c_date_val;
     console.log(c_date_val);
+    var floor=req.body.floor;
     //res.render('conference',{formattedDate});
     c_val=1;
     c=c_val;
     pool.getConnection((err,connection)=>{
         
-        var sql1=`SELECT stime,etime FROM classroom WHERE hall='classroom' AND admin='none'  AND sdate='${c_date_val}'`;
-        var sql2=`SELECT stime,etime FROM classroom WHERE hall='classroom' AND admin='Approved' AND sdate='${c_date_val}'`;
+        var sql1=`SELECT stime,etime FROM log WHERE hall='${floor}' AND Admin='none'  AND sdate='${c_date_val}'`;
+        var sql2=`SELECT stime,etime FROM log WHERE hall='${floor}' AND Admin='Approved' AND sdate='${c_date_val}'`;
         connection.query(sql1,(err,result1)=>{
             if (err) throw err;
             c_request1=[];
             c_approve1=[];
             connection.query(sql2,(err,result2)=>{
                 if(result1.length>0){
-                     c_request1.push(result1[0].stime);
-                     c_request1.push(result1[0].etime);
+                     var n1=c_result.indexOf(result1[0].stime);
+                     var n2=c_result.indexOf(result1[0].etime);
+                     c_request1=c_result.slice(n1,n2+1);
                      console.log("request:"+c_request1);
                   }
                 else if(result2.length>0){
-                   c_approve1.push(result2[0].stime);
-                   c_approve1.push(result2[0].etime);
+                     var n1=c_result.indexOf(result2[0].stime);
+                     var n2=c_result.indexOf(result2[0].etime);
+                     c_approve1=c_result.slice(n1,n2+1);
                    console.log("approve:"+c_approve1);
                 }
                 c_request=c_request1;
@@ -263,7 +263,6 @@ exports.datecall1=(req,res)=>{
 //classroom booking register
 exports.classroombook=(req,res)=>{
     const id=Math.round(Math.random() * (100-10)+10);
-    const hall='classroom';
     const adm='none';
     const {Name,Department,Purpose,floor,sdate,edate,stime,etime}=req.body;
     var msg = `<p>Classroom Booking Reg: Classroom has been requested!!!</p><br>
@@ -271,7 +270,7 @@ exports.classroombook=(req,res)=>{
     This is the notification about the request for the Classroom.<br>
     Name: ${Name}<br>
     Department: ${Department}<br>
-    Requesting Hall: Conference Hall<br>
+    Requesting Hall: Classroom<br>
     Date From: ${sdate}  To: ${edate}<br>
     Timing From:${stime} To:${etime}<br>
     Purpose: ${Purpose}<br>
@@ -283,7 +282,7 @@ exports.classroombook=(req,res)=>{
         if(err)throw err;
         console.log("connect to database "+connection.threadId);
         //const result=connection.query('INSERT INTO booking (id,name,department,hall,purpose,stime,etime,admin) VALUES('+id+','+Name+','+Department+','+"conference"+','+Purpose+','+stime+','+etime+','+"none"+')');
-        connection.query('INSERT INTO classroom SET id=?,name=?,department=?,hall=?,floor=?,purpose=?,sdate=?,edate=?,stime=?,etime=?,admin=?',[id,Name,Department,hall,floor,Purpose,sdate,edate,stime,etime,adm]);
+        connection.query('INSERT INTO log SET id=?,Name=?,Department=?,Hall=?,Purpose=?,sdate=?,edate=?,stime=?,etime=?,Admin=?',[id,Name,Department,floor,Purpose,sdate,edate,stime,etime,adm]);
         
         //to send mail
         let transporter = nodemailer.createTransport({
@@ -317,7 +316,6 @@ exports.classroombook=(req,res)=>{
         connection.release();
         if(!err){
             console.log("Data inserted");
-            alert("classroom booked successfully");
             res.redirect('classroom');
         }
         else{
@@ -326,6 +324,123 @@ exports.classroombook=(req,res)=>{
         
     });
 }
+
+//declaration global variable for booking equipments
+var e_timechart=[];
+var e_request1=[];
+var e_approve1=[];
+global.e_request=e_request1;
+global.e_approve=e_approve1;
+global.e_formattedDate="";
+global.e_result=e_timechart;
+var e_result=["07:00 AM","08:00 AM","09:00 AM","10:00 AM","11:00 AM","12:00 PM","01:00 PM","02:00 PM","03:00 PM","04:00 PM","05:00 PM","06:00 PM","7:00 PM","8:00 PM","9:00 PM"];
+//view equipments page
+exports.equipments=(req,res)=>{
+    res.render('equipments',{e_formattedDate,e_result,e_approve,e_request});
+};
+
+//to display date values for equipments
+exports.e_datecall=(req,res)=>{
+    e_date_val=req.body.Date;
+    global.e_formattedDate=e_date_val;
+    console.log(e_date_val);
+    var machine=req.body.machine;
+    //res.render('conference',{formattedDate});
+    pool.getConnection((err,connection)=>{
+        
+        var sql1=`SELECT stime,etime FROM log WHERE hall='${machine}' AND Admin='none'  AND sdate='${e_date_val}'`;
+        var sql2=`SELECT stime,etime FROM log WHERE hall='${machine}' AND Admin='Approved' AND sdate='${e_date_val}'`;
+        connection.query(sql1,(err,result1)=>{
+            if (err) throw err;
+            e_request1=[];
+            e_approve1=[];
+            connection.query(sql2,(err,result2)=>{
+                if(result1.length>0){
+                     var n1=e_result.indexOf(result1[0].stime);
+                     var n2=e_result.indexOf(result1[0].etime);
+                     e_request1=e_result.slice(n1,n2+1);
+                     console.log("request:"+e_request1);
+                  }
+                else if(result2.length>0){
+                     var n1=e_result.indexOf(result2[0].stime);
+                     var n2=e_result.indexOf(result2[0].etime);
+                     e_approve1=e_result.slice(n1,n2+1);
+                   console.log("approve:"+e_approve1);
+                }
+                e_request=e_request1;
+                e_approve=e_approve1;
+                res.redirect('/equipments');
+             })
+         });
+    })
+}
+
+
+//Equipments booking register
+exports.equipments_book=(req,res)=>{
+    const id=Math.round(Math.random() * (100-10)+10);
+    const adm='none';
+    const {Name,Department,Purpose,machine,sdate,edate,stime,etime}=req.body;
+    var msg = `<p>Equipments Booking Reg:${machine} has been requested!!!</p><br>
+    Respected Sir/Madam<br>
+    This is the notification about the request for the Equipments.<br>
+    Name: ${Name}<br>
+    Department: ${Department}<br>
+    Requesting machine: ${machine}<br>
+    Date From: ${sdate}  To: ${edate}<br>
+    Timing From:${stime} To:${etime}<br>
+    Purpose: ${Purpose}<br>
+    So kindly refer your TSS CAR Services Account to check Availability of the Requested machine and to accept/reject the request.<br>
+    Regards<br>
+    TSS CAR Services<br>`;
+    //connect to db
+    pool.getConnection((err,connection)=>{
+        if(err)throw err;
+        console.log("connect to database "+connection.threadId);
+        //const result=connection.query('INSERT INTO booking (id,name,department,hall,purpose,stime,etime,admin) VALUES('+id+','+Name+','+Department+','+"conference"+','+Purpose+','+stime+','+etime+','+"none"+')');
+        connection.query('INSERT INTO log SET id=?,Name=?,Department=?,Hall=?,Purpose=?,sdate=?,edate=?,stime=?,etime=?,Admin=?',[id,Name,Department,machine,Purpose,sdate,edate,stime,etime,adm]);
+        
+        //to send mail
+        let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true, // true for 465, false for other ports
+        auth: {
+          user: "tsscartesting@gmail.com", // generated ethereal user
+          pass: "tsscar12345", // generated ethereal password
+        },
+        tls:{
+            rejectUnauthorized:false
+        }
+      });
+      let mailoptions = {
+        from: `"Ravikumar K" <tsscartesting@gmail.com>`, // sender address
+        to: "ravi@student.tce.edu", // list of receivers
+        subject: "Equipments booking reg", // Subject line
+        html:msg, // html body
+      };
+
+      transporter.sendMail(mailoptions,(err, info)=>{
+          if (err){
+              return console.log(err)
+          }
+          console.log('Message Sent');
+          //window.alert('Returned Sucessfully');
+          res.redirect('equipments');
+      });
+
+        connection.release();
+        if(!err){
+            console.log("Data inserted");
+            res.redirect('equipments');
+        }
+        else{
+            console.log(err);
+        }
+        
+    });
+}
+
 
 //view home page
 exports.homepage=(req,res)=>{
@@ -341,9 +456,23 @@ exports.labs=(req,res)=>{
     res.sendFile(path.join(__dirname+'/labs.html'));
 
 }
-//view admin home page
-exports.seminaradmin=(req,res)=>{
-    res.sendFile(path.join(__dirname+'/seminaradmin.html'));
+
+
+//view product lab page
+exports.product_lab=(req,res)=>{
+    res.sendFile(path.join(__dirname+'/product-lab.html'));
+
+}
+//view product lab page
+exports.equ_details=(req,res)=>{
+    res.sendFile(path.join(__dirname+'/equ_details.html'));
+
+}
+
+//view adminhome page
+exports.adminhome=(req,res)=>{
+    res.render('adminhome');
+
 }
 
 //logout

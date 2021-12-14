@@ -91,8 +91,7 @@ body {
   left: 300px;
   font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
-  color: lightsalmon;
-}
+} 
 #title #t1{
   font-size: 6vw;
 }
@@ -121,12 +120,35 @@ body {
   position: absolute;
   bottom: 10%;
   left: 5%;
-  background-color:grey;
+  background-color:rgb(212, 209, 209);
   border: 2px solid gray;
   border-radius: 25px;
   padding: 25px;
-  color: white;
+  color: black;
 }
 #l-footer p{
   font-size: 16px;
 }
+
+/*title animation*/
+	#title h2 {
+	  margin: 0;
+	  padding-bottom: 1rem;
+	  grid-column: 1;
+	  grid-row: 1;
+	  z-index: 1;
+	  font-family: 'Teko', sans-serif;
+	  font-size: 10rem;
+	  text-transform: uppercase;
+	  animation: glow 2s ease-in-out infinite alternate;
+	  text-align: center;
+	  color: rgb(233, 233, 233);
+	}
+	@keyframes glow {
+	  from {
+		text-shadow: 50px 50px 500px rgb(233, 233, 233);
+	  }
+	  to {
+		text-shadow: 50px 50px 50px rgb(233, 233, 233), 50px 50px 50px rgb(233, 233, 233);
+	  }
+	}

@@ -71,8 +71,6 @@
   white-space: nowrap;
 }
 .sidebar .nav-links .log_out{
-  position: absolute;
-  bottom: 0;
   width: 100%;
 }
 .tabcontent {
@@ -146,6 +144,7 @@ nav .sidebar-button i{
 .home-content .overview-boxes{
   display: inline-flex;
   flex-wrap: wrap;
+  width:100%;
   align-items: left;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -156,7 +155,7 @@ nav .sidebar-button i{
 .overview-boxes .box{
   display: flex;
   justify-content: center;
-  width: calc(100% / 4 - 15px);
+  width: calc(100% / 5 - 15px);
   background: #fff;
   padding:15px 10px ;
   border-radius: 12px;
@@ -166,6 +165,33 @@ nav .sidebar-button i{
   font-size: 20px;
   font-weight: 500;
 }
+.report{
+  display: flex;
+  justify-content: space-between;
+  /* padding: 0 20px; */
+}
+
+.report .chart{
+  width: 100%;
+  background: #fff;
+  padding: 20px 30px;
+  margin: 0 20px;
+  display:flex;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.report .sales-details{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.report .box .title{
+  font-size: 24px;
+  font-weight: 500;
+  width:90%;
+  /* margin-bottom: 10px; */
+}
+
 .home-content .box .number{
   display: inline-block;
   font-size: 35px;
@@ -206,7 +232,7 @@ nav .sidebar-button i{
     left: 60px;
   }
   .sidebar.active ~ .home-section{
-    /* width: calc(100% - 220px); */
+   width: calc(100% - 220px);
     overflow: hidden;
     left: 220px;
   }
@@ -257,14 +283,15 @@ nav .sidebar-button i{
     width: 100%;
     margin-bottom: 15px;
   }
-  .sidebar.active ~ .home-section nav .profile-details{
-    display: none;
-  }
+
 }
 #Requests,#Conflicts,#Approved,#Returned{
   display:none;
 }
-
+.card-body {
+  flex: 1 1 auto;
+  padding: 1rem 1rem;
+}
 table {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
@@ -287,13 +314,13 @@ th {
   background-color: #0A2558;
   color: white;
 }
-
-.t1{
-  overflow-x:auto;
-}
 h1{
   background-color: grey;
   color:black;
   text-align:center;
   width:100%;
+}
+
+img{
+  border:2px solid black;
 }
