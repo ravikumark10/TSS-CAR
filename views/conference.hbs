@@ -160,9 +160,9 @@
  </style>
     <form action="/hallbook" method="post" style="display: none;" id="c-form">
         <h3>Booking Details</h3>
-        <input id="name" type="text" name="Name" id="1" placeholder="Name"  required/>
-        <select  name="Department" id="2" required>
-        <option value="">Department</option>
+        <input id="name" type="text" name="Name" id="1"  value="{{user}}"  required/>
+      <select  name="Department" id="2"  required>
+        <option selected="selected" value="{{user_d}}">{{user_d}}</option>
         <option value="IT">IT</option>
         <option value="CSE">CSE</option>
         <option value="Mechatronics">Mechatronics</option>
@@ -180,9 +180,9 @@
       <option>Others</option>
       </select>
       <label>Start-Date: </label>
-      <input type="date" name="sdate" id="5" required />
+      <input type="date" name="sdate" id="5" value="{{ date_val }}" required />
       <label>End-Date: </label>
-      <input type="date" name="edate" id="6" required />
+      <input type="date" name="edate" id="6" value="{{ date_val }}" required />
       <label>Start-Time</label>
       <select id="7" name="stime" required onblur="emptyField()">
           <option value="">Starting Time</option>
@@ -197,6 +197,10 @@
           <option>03:00 PM</option>
           <option>04:00 PM</option>
           <option>05:00 PM</option>
+          <option>06:00 PM</option>
+          <option>07:00 PM</option>
+          <option>08:00 PM</option>
+          <option>09:00 PM</option>
         </select>
         <label>End-Time</label>
         <select id="8" name="etime" required onblur="emptyField()">
@@ -211,6 +215,10 @@
           <option>03:00 PM</option>
           <option>04:00 PM</option>
           <option>05:00 PM</option>
+          <option>06:00 PM</option>
+          <option>07:00 PM</option>
+          <option>08:00 PM</option>
+          <option>09:00 PM</option>
         </select>
         <button type="submit" value="submit">Book</button>
     </form>

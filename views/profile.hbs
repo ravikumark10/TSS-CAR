@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" href="../style/profile.css">
+</head>
+    <style>
+        .labels{
+            font-size: 15px;
+        }
+        .form-control{
+            border: none;
+            border-bottom: 2px solid rgb(11, 136, 185);
+        }
+    </style>
+<body>
+    <div style="width: 700px; margin-top: 100px;" class="container rounded bg-white">
+        <div class="row">
+            <div class="col-md-4 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="..//images/profile.png"><span class="font-weight-bold">{{user_name}}</span><span> </span></div>
+            </div>
+            <div class="col-md-8 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Profile Settings</h4>
+                    </div>
+                    <form action="/updateprofile" method="post">
+                         <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">Name</label><input type="text" name="name1" class="form-control" value="{{user_name}}"> </div>
+                    </div>
+                  
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">Department</label><input type="text" name="department1" class="form-control" value="{{user_dept}}"></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">Email</label><input type="text" name="email1" class="form-control" value="{{user_email}}"></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">Password</label><input type="text" name="password1" class="form-control" value="{{user_pass}}"></div>
+                    </div>
+                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" value="submit" type="submit">Save Profile</button></div>
+                    </form>
+                   
+                </div>
+            </div>
+           
+        </div>
+    </div>
+    </div>
+    </div>
+</body>
+</html>

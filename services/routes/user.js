@@ -1,6 +1,7 @@
 const express=require('express');
 const router=express.Router();
 const userController=require('../controllers/userController');
+const userController1=require('../controllers/admincontroller');
 
 router.get('/register',userController.view);
 router.post('/',userController.form_register);
@@ -10,6 +11,11 @@ router.post('/login',userController.login_form);
 router.get('/homepage',userController.homepage);
 router.get('/logout',userController.logout);
 router.get('/home',userController.home);
+
+//proflie page
+router.get('/profile',userController.profile);
+router.get('/user_val',userController.sample);
+router.post('/updateprofile',userController.updateprofile);
 
 //conference hall booking
 router.get('/conference',userController.conferencehall);
@@ -28,5 +34,23 @@ router.get('/equipments',userController.equipments);
 router.post('/e_datecall',userController.e_datecall);
 router.post('/equipments_book',userController.equipments_book);
 router.get('/equ-details',userController.equ_details);
-router.get('/adminhome',userController.adminhome);
+
+router.get('/adminhome',userController1.admin);
+
+//Display Center
+router.get('/displaycenter',userController.displayCenter);
+router.post('/d_datecall',userController.d_datecall);
+router.post('/displaycenter_book',userController.displayCenter_book);
+
+//CEVT lab equipments
+router.get('/ev-lab',userController.ev_lab);
+router.get('/cevt',userController.cevt);
+router.post('/ce_datecall',userController.ce_datecall);
+router.post('/cevt_book',userController.cevt_equipments_book);
+
+//CDS 
+router.get('/cds',userController.cds);
+router.post('/cd_datedisplay',userController.cd_datecall);
+router.post('/cds-book',userController.cds_book);
+
 module.exports=router;

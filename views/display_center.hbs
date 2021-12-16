@@ -9,7 +9,7 @@
          <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-     <title>Conference</title>
+     <title>Display Center</title>
    </head>
 <body>
   <nav>
@@ -38,30 +38,17 @@
     </div>
   </nav>
   <div id="c-head">
-    <h2>Equipments Booking</h2>
+    <h2>Display Center Booking</h2>
   </div>
   <div id="c-s-date">
-    <h3>Equipments Time Chart</h3>
+    <h3>Display Center Time Chart</h3>
     <div id="c-ss-d">
-        <form action="/e_datecall" method="post">
+        <form action="/d_datecall" method="post">
             <label>Select date:</label>
-            <input type="date" name="Date" required><br>
-            <div id="c-machine">
-            <label>Select machine:</label>
-            <select name="machine" required>
-                <option>Select machine</option>
-                <option>CNC Lathe</option>
-                <option>CNC Milling</option>
-                <option>TIG Welding</option>
-                <option>MIG Welding</option>
-                <option>CNC Tube Bending</option>
-                <option>Hydraulic Press</option>            
-            </select>
-            </div>  
+            <input type="date" name="Date"><br>
             <button  type="submit">Check</button>
         </form>
-    </div> 
-              
+    </div>  
     </div>
   <div id="chart">
     <div id="c-status">
@@ -69,16 +56,16 @@
         <div id="orange"><img src="../images/orange.png"><p>-Requested</p></div>
         <div id="red"><img src="../images/red.png"><p>-Already booked</p></div>
     </div>
-    <div  id="c-c-d"><p>Date:</p><p>{{date e_formattedDate "DD/MM/YYYY"}}</p> </div>
     
+    </div>
+  <div  id="c-c-d"><p>Date:{{date d_date_val "DD/MM/YYYY"}}</p> </div>
+  <div id="c-click">
+    <button id="c-b-h" onclick="showHide()">Click here to book Display Center</button>
   </div>
   
-  <div id="c-click">
-    <button id="c-b-h" onclick="showHide()">Click here to book Equipments</button>
-  </div>
   <div id="c-timechart">
-      {{#each e_result}}
-            <div style="{{#ifIn this ../e_request}}background-color:orange{{/ifIn}}{{#ifIn this ../e_approve}}background-color:red{{/ifIn}}">{{this}}</div>
+      {{#each d_result}}
+            <div style="{{#ifIn this ../d_request}}background-color:orange{{/ifIn}}{{#ifIn this ../d_approve}}background-color:red{{/ifIn}}">{{this}}</div>
       {{/each}}
   </div>
       <style media="screen">
@@ -91,24 +78,10 @@
 }
 
 
-#c-machine{
-    display: flex;
-    position: absolute;
-    left: 270px;
-    top: 43px;
-}
-#c-machine label{
-    margin-top: 5px;
-    width:100pt;
-}
-#c-machine select{
-    background-color: white;
-    font-weight: 400;
-    border-radius: 5px;
-    height: 30px;
-}
+
+
 #c-form{
-    height: 680px;
+    height: 650px;
     width: 400px;
     background-color: lightslategrey;
     position: absolute;
@@ -173,7 +146,7 @@
     color: #080710;
     padding: 15px 0;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 300;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -185,11 +158,11 @@
 }
 
  </style>
-    <form action="/equipments_book" method="post" style="display: none;" id="c-form">
+    <form action="/displaycenter_book" method="post" style="display: none;" id="c-form">
         <h3>Booking Details</h3>
-        <input id="name" type="text" name="Name" id="1" value="{{user}}" required/>
-        <select  name="Department" id="2" required>
-        <option >{{user_d}}</option>
+        <input id="name" type="text" name="Name" id="1"  value="{{user}}"  required/>
+      <select  name="Department" id="2"  required>
+        <option selected="selected" value="{{user_d}}">{{user_d}}</option>
         <option value="IT">IT</option>
         <option value="CSE">CSE</option>
         <option value="Mechatronics">Mechatronics</option>
@@ -200,23 +173,16 @@
       </select>
       <select id="3" name="Purpose" required>
       <option value="">Purpose </option>
-      <option>Teaching</option>
-      <option>Working</option>
+      <option>Meeting</option>
+      <option>Video Conferencing</option>
+      <option>Project Review</option>
+      <option>Webminar</option>
       <option>Others</option>
       </select>
-     <select  name="machine" required>
-        <option>{{e_machine}}</option>
-        <option>CNC Lathe</option>
-        <option>CNC Milling</option>
-        <option>TIG Welding</option>
-        <option>MIG Welding</option>
-        <option>CNC Tube Bending</option>
-        <option>Hydraulic Press</option>
-    </select>
       <label>Start-Date: </label>
-      <input type="date" name="sdate" id="5" value="{{e_formattedDate}}" required />
+      <input type="date" name="sdate" id="5" value="{{ d_date_val  }}" required />
       <label>End-Date: </label>
-      <input type="date" name="edate" id="6" value="{{e_formattedDate}}" required />
+      <input type="date" name="edate" id="6" value="{{ d_date_val  }}" required />
       <label>Start-Time</label>
       <select id="7" name="stime" required onblur="emptyField()">
           <option value="">Starting Time</option>
@@ -231,7 +197,7 @@
           <option>03:00 PM</option>
           <option>04:00 PM</option>
           <option>05:00 PM</option>
-          <option>06:00 PM</option>
+           <option>06:00 PM</option>
           <option>07:00 PM</option>
           <option>08:00 PM</option>
           <option>09:00 PM</option>
@@ -254,7 +220,7 @@
           <option>08:00 PM</option>
           <option>09:00 PM</option>
         </select>
-        <button>Book</button>
+        <button type="submit" value="submit">Book</button>
     </form>
 </body>
 </html>

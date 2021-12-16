@@ -54,7 +54,6 @@ exports.admin= (req,res)=>{
                                 var j =conf[i].m;
                                 confmonth[j-1]=conf[i].c
                             }
-                            console.log(confmonth);
                             connection.query("select month(sdate) as m,count(*) as c from log where year(sdate)=? and (HALL=? or HALL=?) group by year(sdate),month(sdate) order by year(sdate),month(sdate)",[y, 'Ground Floor','First Floor'],(err,classroom)=>{
                                 if (err) throw err;
                         console.log(classroom);
@@ -62,7 +61,6 @@ exports.admin= (req,res)=>{
                             var j =classroom[i].m;
                             classmonth[j-1]=classroom[i].c
                         }
-                        console.log(classmonth)
                         connection.release();
                         const chart = new QuickChart();
                         chart.setWidth(480)
@@ -132,6 +130,10 @@ exports.Notrecommendform = (req,res)=>{
    var Department= req.body.Department;
    var Hall =req.body.Hall;
    var arr=[];
+   console.log(id);
+   console.log(Name);
+   console.log(Department);
+   console.log(Hall);
    arr.push(id,Name,Department,Hall);
    global.ans=req.body;
    res.redirect('/NotRecommend');
@@ -180,7 +182,7 @@ exports.Returnmail =(req,res)=>{
                global.returnEmail=result2[0].email;
            }
            if (result1.length>0){
-               connection.query("UPDATE log SET Admin = 'Not Approved' where id=? and Name=? and Hall=? and Department=?",[id,Name,Hall,Department],(err,result3)=>{
+               connection.query("UPDATE log SET Admin = 'Not Approved' where id=? ",[id],(err,result3)=>{
                    if (err) throw err;
                    connection.release();
 
@@ -189,15 +191,15 @@ exports.Returnmail =(req,res)=>{
        port: 465,
        secure: true, // true for 465, false for other ports
        auth: {
-         user: "tsscartesting@gmail.com", // generated ethereal user
-         pass: "tsscar12345", // generated ethereal password
+         user: "tsscarservice@gmail.com", // generated ethereal user
+         pass: "aj1ma2ra3ha4", // generated ethereal password
        },
        tls:{
            rejectUnauthorized:false
        }
      });
      let mailoptions = {
-       from: '"TSS Admin" <tsscartesting@gmail.com>',
+       from: '"TSS Admin" <tsscarservice@gmail.com>',
        to: returnEmail,
        subject: "Hall Booking reg",
        text: "Approval Denied",
@@ -239,28 +241,28 @@ connection.query("select id from log where id=? and Name=? and Department=?",[id
 connection.query("select email from user_reg where name=? and dept=?",[Name,Department],(err,result2)=>{
        if (err) throw err;
        if (result2.length>0){
-           global.approveEmail=result2[0].Email;
+           global.approveEmail=result2[0].email;
            }
        if (result1.length>0){
-connection.query("UPDATE log SET Admin = 'Approved' where id=? and Name=? and Hall=? and Department=?",[id,Name,Hall,Department],(err,result3)=>{
+connection.query("UPDATE log SET Admin = 'Approved' where id=?",[id],(err,result3)=>{
 if (err) throw err;
 connection.release();
-
+console.log(approveEmail);
 
 let transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
   secure: true, // true for 465, false for other ports
   auth: {
-    user: "tsscartesting@gmail.com", // generated ethereal user
-    pass: "tsscar12345", // generated ethereal password
+    user: "tsscarservice@gmail.com", // generated ethereal user
+    pass: "aj1ma2ra3ha4", // generated ethereal password
   },
   tls:{
       rejectUnauthorized:false
   }
 });
 let mailoptions = {
-  from: '"TSS Admin" <tsscartesting@gmail.com>',
+  from: '"TSS Admin" <tsscarservice@gmail.com>',
   to: approveEmail,
   subject: "Hall Booking reg",
   text: "Approved",

@@ -45,4 +45,3 @@
     var div1 = document.getElementById("c-b-h");
     div1.style.display="none";
   }
-  
