@@ -8,8 +8,21 @@ app.use(express.json());
 const path=require('path');
 const mysql=require('mysql');
 const nodemailer=require('nodemailer');
-const alert=require('alert');
+const bcrypt=require('bcryptjs');
+const { handlebars } = require('consolidate');
+const cons = require('consolidate');
+const session=require('express-session');
+const router = require('../routes/user');
+const router1=express.Router();
 
+
+app.use(session({
+    secret:'secret',
+    resave:true,
+    saveUninitialized:false
+}));
+app.use(router1);
+//req.session.loginvalid=false;
 //Templating Engine for html
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
@@ -25,9 +38,9 @@ const pool=mysql.createPool({
 });
 
 //view register page
-exports.view=(req,res)=>{
-    res.sendFile(path.join(__dirname+'/register.html'));
 
+exports.view=(req,res)=>{
+        res.sendFile(path.join(__dirname+'/register.html'));
 }
 
 //view login page
@@ -37,65 +50,101 @@ exports.loginform=(req,res)=>{
 }
 
 //register form data submission
-exports.form_register=(req,res)=>{
-    const {Name,Department,Email,Password,c_password}=req.body;
-
-    //connect to db
-    pool.getConnection((err,connection)=>{
-        if(err)throw err;
-        console.log("connect to database "+connection.threadId);
-
-        connection.query('INSERT INTO user_reg SET name=?,dept=?,email=?,password=?,c_password=?',[Name,Department,Email,Password,c_password]);
-        connection.release();
-
-        if(!err){
-            console.log("Data inserted");
-            res.redirect('loginform');
+    exports.form_register= async(req,res)=>{
+        try{
+            const {Name,Department,Email,Password,c_password}=req.body;
+            const hash_pass=bcrypt.hashSync(Password,10);
+            console.log(hash_pass);
+            //connect to db
+            pool.getConnection((err,connection)=>{
+                if(err)throw err;
+                console.log("connect to database "+connection.threadId);
+                connection.query('SELECT * FROM user_reg WHERE email=?',[Email],(err,rows1)=>{
+                    if(rows1.length>0){
+                        res.send(`<script>window.alert('Email already registered');window.location.href='/register';</script>`);
+                    }
+                    else{
+                        connection.query('INSERT INTO user_reg SET name=?,dept=?,email=?,password=?,c_password=?',[Name,Department,Email,hash_pass,hash_pass],(err1,rows)=>{
+                            if(!err1){
+                                console.log(rows);
+                                console.log("Data inserted");
+                                res.send(`<script>window.alert('Registered Successfully');window.location.href='/loginform';</script>`);
+                            }
+                            else{
+                                console.log(err);
+                            }
+                        });
+                    }
+                })
+                
+            });
         }
-        else{
-            console.log(err);
+        catch(e){
+            console.log(e);
         }
         
-    });
+    
+    }
 
-}
 
 //login validate 
 global.user="";
 global.user_id="";
 global.user_d="";
-exports.login_form=(req,res)=>{
+exports.login_form= async(req,res)=>{
     var username=req.body.username;
     var password=req.body.password;
     user=username;
-    //connect to db
-    pool.getConnection((err,connection)=>{
+    try{
+         //connect to db
+        pool.getConnection((err,connection)=>{
         if(err)throw err;
         console.log("connect to database "+connection.threadId);
-        connection.query('SELECT * FROM user_reg WHERE email=? AND password=?',[username,password],(err,rows)=>{
+        connection.query('SELECT * FROM user_reg WHERE email=?',[username],(err,rows)=>{
             connection.query('SELECT * FROM admin WHERE email=? AND password=?',[username,password],(err,rows1)=>{
                 if(rows.length>0){
-                    user=rows[0].name;
-                    user_id=rows[0].id;
-                    user_d=rows[0].dept;
-                    res.redirect('/homepage');
+                    const hash_val=rows[0].password;
+                    console.log(hash_val);
+                    console.log(password);
+                    const bool_val=bcrypt.compareSync(password,hash_val);
+                    console.log(bool_val);
+                    if(bool_val){
+                        req.session.login=true;
+                        res.send(`<script>window.alert('Login Succesfully');window.location.href='/homepage';</script>`);
+                        user=rows[0].name;
+                        user_id=rows[0].id;
+                        user_d=rows[0].dept;
+                    }
+                    else{
+                        res.send(`<script>window.alert('Incorrect Password');window.location.href='/loginform';</script>`);
+                    }
+                    
                 }
                 else if(rows1.length>0){
                     res.redirect('/adminhome');
                 }
                 else{
-                    res.redirect('loginform');
+                    res.send(`<script>window.alert('Incorrect email or password');window.location.href='/loginform';</script>`);
                 } 
             })
         })
 
             connection.release();
-        })     
+        }) 
+    }catch(e){
+        console.log(e);
+    }
+       
 }
 
 //view home page
 exports.homepage=(req,res)=>{
-    res.sendFile(path.join(__dirname+'/home.html'));
+    if(req.session.login==true){
+        res.sendFile(path.join(__dirname+'/home.html'));
+    }else{
+        res.redirect('/loginform');
+    }
+    
 }
 exports.sample=(req,res)=>{
     res.send(user);
@@ -253,17 +302,9 @@ exports.hallbook=(req,res)=>{
           }
           console.log('Message Sent');
           //window.alert('Returned Sucessfully');
-          res.redirect('conference');
+          res.send(`<script>window.alert('Conference hall booked successfully');window.location.href='/conference';</script>`);
       });
 
-        connection.release();
-        if(!err){
-            console.log("Data inserted");
-            res.redirect('conference');
-        }
-        else{
-            console.log(err);
-        }
         
     });
 }
@@ -377,17 +418,10 @@ exports.classroombook=(req,res)=>{
           }
           console.log('Message Sent');
           //window.alert('Returned Sucessfully');
-          res.redirect('classroom');
+          res.send(`<script>window.alert('Classroom booked successfully');window.location.href='/classroom';</script>`);
       });
 
         connection.release();
-        if(!err){
-            console.log("Data inserted");
-            res.redirect('classroom');
-        }
-        else{
-            console.log(err);
-        }
         
     });
 }
@@ -503,17 +537,10 @@ exports.equipments_book=(req,res)=>{
           }
           console.log('Message Sent');
           //window.alert('Returned Sucessfully');
-          res.redirect('equipments');
+          res.send(`<script>window.alert('Equipments booked successfully');window.location.href='/equipments';</script>`);
       });
 
         connection.release();
-        if(!err){
-            console.log("Data inserted");
-            res.redirect('equipments');
-        }
-        else{
-            console.log(err);
-        }
         
     });
 }
@@ -626,17 +653,10 @@ exports.displayCenter_book=(req,res)=>{
           }
           console.log('Message Sent');
           //window.alert('Returned Sucessfully');
-          res.redirect('/displaycenter');
+          res.send(`<script>window.alert('Display Center booked successfully');window.location.href='/displaycenter';</script>`);
       });
 
         connection.release();
-        if(!err){
-            console.log("Data inserted");
-            res.redirect('/displaycenter');
-        }
-        else{
-            console.log(err);
-        }
         
     });
 }
@@ -752,17 +772,10 @@ exports.cevt_equipments_book=(req,res)=>{
           }
           console.log('Message Sent');
           //window.alert('Returned Sucessfully');
-          res.redirect('/cevt');
+          res.send(`<script>window.alert('CEVT Equipments booked successfully');window.location.href='/cevt';</script>`);
       });
 
         connection.release();
-        if(!err){
-            console.log("Data inserted");
-            res.redirect('/cevt');
-        }
-        else{
-            console.log(err);
-        }
         
     });
 }
@@ -879,17 +892,10 @@ exports.cds_book=(req,res)=>{
           }
           console.log('Message Sent');
           //window.alert('Returned Sucessfully');
-          res.redirect('/cds');
+          res.send(`<script>window.alert('CDS Lab booked successfully');window.location.href='/cds';</script>`);
       });
 
         connection.release();
-        if(!err){
-            console.log("Data inserted");
-            res.redirect('/cds');
-        }
-        else{
-            console.log(err);
-        }
         
     });
 }
@@ -925,6 +931,17 @@ exports.equ_details=(req,res)=>{
 
 }
 
+//view cevt equipmnent details lab page
+exports.cevt_details=(req,res)=>{
+    res.sendFile(path.join(__dirname+'/cevt_details.html'));
+
+}
+
+//view cds lab details page
+exports.cds_details=(req,res)=>{
+    res.sendFile(path.join(__dirname+'/cds_details.html'));
+
+}
 
 //logout
 exports.logout=(req,res)=>{

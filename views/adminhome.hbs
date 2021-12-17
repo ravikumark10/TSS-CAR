@@ -53,14 +53,17 @@
           </li>
        
         <li class="log_out">
-          <button class="active">
+          <button class="active" onclick="window.location.href='/logout'">
             <i class="bi bi-box-arrow-left"></i>
             <span class="links_name">Log out</span>
           </button>
         </li>
       </ul>
   </div>
+
   <section class="home-section">
+    <input type="hidden" id="confmonth" value={{conference}}>
+       <input type="hidden" id="classmonth" value={{classrooms}}>
     <nav>
       <div class="sidebar-button" >
         <i class="bi bi-list menubtn"></i>
@@ -89,6 +92,7 @@
             <i class="bi bi-hourglass-split"></i>
           </div>
         </div>
+        
         <div class="box">
           <div>
             <div class="box-topic">Clashed </div>
@@ -123,7 +127,7 @@
           <i style="width:20px;height:22px;margin:5px;border:2px solid black;" class="bi bi-bar-chart-line-fill indicator" ></i>
           <div class="title">Utilisation Report
       
-      <div class="card-body"><img  src={{confchart}} alt="Currently Report Unavailable. Check your Internet Connection"></div>
+      <div class="card-body"><canvas id="myBarChart" width="100%" height="50" border="2px solid black"></canvas></div>
       </div></div>
       </div>
         <div id="Requests" class="tabcontent">
@@ -167,7 +171,7 @@
         <tr><td> {{this.Name}} </td>
         <td> {{this.Department}} </td>
         <td>{{this.stime}} <br>to{{this.etime}} </td>
-        <td> {{this.sdate}}<br>to{{this.edate}} </td>
+        <td> {{ date this.sdate "YYYY/MM/DD"}}<br>to{{date this.edate "YYYY/MM/DD"}} </td>
         <td><button type='submit' NAME='BTN_ACN' >View</button></td>
         </tr>
         </form>
@@ -228,12 +232,24 @@
     {{/ifcheck}}
            </div>
            </div>
-</div>
+
+
   </section>
   <script>
+var x=document.getElementById("confmonth").value;
+conf=[]
+for (var i=0; i<x.length;i++){
+  conf.push(parseInt(x[i]));
+}
+var y=document.getElementById("classmonth").value;
+cls=[];
+for (var i=0; i<y.length;i++){
+  cls.push(parseInt(y[i]));
+}
 let  sidebar = document.querySelector(".sidebar");
 let sidebarBtn = document.querySelector(".menubtn");
 sidebarBtn.onclick = function() {
+ 
   sidebar.classList.toggle("active");
   if(sidebar.classList.contains("active")){
   sidebarBtn.classList.replace("bi-list" ,"bi-list-nested");
@@ -249,12 +265,18 @@ var ctx = document.getElementById("myBarChart");
 var myLineChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "June","July","Aug","Sept","Oct","Nov","Dec"],
     datasets: [{
-      label: "Revenue",
+      label: "Conference Bookings",
+      backgroundColor: "rgba(255,69,0)",
+      borderColor: "rgba(255,69,0)",
+      data:conf,
+    },
+    {
+      label: "class bookings",
       backgroundColor: "rgba(2,117,216,1)",
       borderColor: "rgba(2,117,216,1)",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
+      data:cls,
     }],
   },
   options: {
@@ -267,14 +289,12 @@ var myLineChart = new Chart(ctx, {
           display: false
         },
         ticks: {
-          maxTicksLimit: 6
+          maxTicksLimit: 12
         }
       }],
       yAxes: [{
         ticks: {
           min: 0,
-          max: 15000,
-          maxTicksLimit: 5
         },
         gridLines: {
           display: true
@@ -282,11 +302,10 @@ var myLineChart = new Chart(ctx, {
       }],
     },
     legend: {
-      display: false
+      display: true
     }
   }
 });
-
 </script>
 </body>
 </html>

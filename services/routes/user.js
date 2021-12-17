@@ -1,7 +1,16 @@
 const express=require('express');
 const router=express.Router();
+const session=require('express-session');
 const userController=require('../controllers/userController');
 const userController1=require('../controllers/admincontroller');
+
+
+router.use(session({
+    secret:'secret',
+    resave:true,
+    saveUninitialized:false
+}));
+//app.use(router);
 
 router.get('/register',userController.view);
 router.post('/',userController.form_register);
@@ -47,10 +56,12 @@ router.get('/ev-lab',userController.ev_lab);
 router.get('/cevt',userController.cevt);
 router.post('/ce_datecall',userController.ce_datecall);
 router.post('/cevt_book',userController.cevt_equipments_book);
+router.get('/cevt-details',userController.cevt_details);
 
 //CDS 
 router.get('/cds',userController.cds);
 router.post('/cd_datedisplay',userController.cd_datecall);
 router.post('/cds-book',userController.cds_book);
+router.get('/cds-details',userController.cds_details);
 
 module.exports=router;

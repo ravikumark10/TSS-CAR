@@ -43,10 +43,10 @@
     {{#each ans}}
 {{/each}}
         <form action="/Returnmail" method="post">
-            <input type='hidden' name='id' value= {{ans.id}}>
-            <input type='hidden' name='Name' value={{ans.Name}}>
-            <input type='hidden' name='Department' value={{ans.Department}}>
-            <input type='hidden' name='Hall' value={{ans.Hall}}>
+            <input type='hidden' name='id' value= "{{ans.id}}">
+            <input type='hidden' name='Name' value="{{ans.Name}}">
+            <input type='hidden' name='Department' value="{{ans.Department}}">
+            <input type='hidden' name='Hall' value= "{{ans.Hall}}">
             <div  style="margin:5px;position:fixed;top:100px;" class="t1">
               <h3>Select Reasons For Returning The Request</h3><br>
         <table align="center">

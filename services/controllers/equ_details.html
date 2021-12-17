@@ -1,11 +1,15 @@
-<html>
-    <head>
-        <title>
-            TVS
-        </title>
-    </head>
-    <style>
-        [class*="col-"] {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel= "stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<style>
+     [class*="col-"] {
         width: 100%;
         box-sizing: border-box;
         float: left;
@@ -23,11 +27,12 @@
             font-family: sans-serif;
             color:white;
             position: absolute;
-            top: 0%;
+            height: 70px;
         }
         .header h2{
             float:left;
             padding: 0px 20px;
+            margin: 10px;
         }
         #e-he{
             float:right;
@@ -38,7 +43,7 @@
         li,.hel{
             float: right;
             padding: 4px 8px;
-            margin:0px 4px;
+            margin:10px 4px;
             transition: opacity 0.5s;
         }
         #e-he .h-h:hover{
@@ -83,200 +88,231 @@
         #h-logout{
             color: white;
         }
-        #h-title{
-            position: absolute;
-            top: 13%;
-            left:400px;
-            font-size: 30px;
-            color: rgb(14, 9, 9);
-        }
-        .e-m{
-            margin-top: 200px;
-            margin-left: 300px;
-            border: 2px solid grey;
-            width: 600px;
-            padding: 15px;
-            background-color: rgb(233, 230, 230);
-            color: rgb(0, 0, 0);
-        }
-        .e-m h2{
-            color: #1e1ef0;
-        }
-        .e-m button{
-          
-            padding: 15px;
-            background-color: rgb(38, 38, 102);
-            border: 2px solid rgb(38, 38, 102);
-            border-radius: 10px;
-            font-weight: 200;
-            color: white;
-            font-size: 16px;
-        }
-        .e-m button:hover{
-            background-color: beige;
-            color:rgb(38, 38, 102);
-            font-size: 18px;
-        }
-        .e-ul{
-            float: left;
-        }
-        h3{
-            color:#1e1ef0;
-        }
-        .e-s{
-            font-weight: bolder;
-            display: block;
-        }
-        #e-ca{
-            margin-left: 80px;
-            font-weight: bolder;
-        }
-        div{
-            float: left;
+</style>
+<body style="background-color: #f5f5f5;">
+    <header>
+        <div class="header col-12">
+            <h2>TSS CARS SERVICES</h2>
             
-        }      
-        button{
-            margin-left: 150px;
-            margin-bottom:50px;
-        } 
-    </style>
-        <body>
-       <div class="header col-12">
-        <h2>TSS CARS SERVICES</h2>
-        
-        <ul id="e-he">
-            <li class="h-h">Report</li>
-            <a id="h-logout" href="/logout"><li class="h-h">logout</li></a>
-            <div class="hel"><div class="service">Service</div>
-            
-                <div class="service1">
-                    <a href="/conference"> <li>Conference Room</li></a>
-                    <a href="/product-lab"><li>Equipments</li></a>
-                    <a href="/classroom"><li>Classroom</li></a>
-                    <a href="/labs"><li>Labs</li></a>
-                    <a><li>Automotive Discovery Center</li></a>
+            <ul id="e-he">
+                <li class="h-h">Report</li>
+                <a id="h-logout" href="/logout"><li class="h-h">logout</li></a>
+                <div class="hel"><div class="service">Service</div>
+                
+                    <div class="service1">
+                        <a href="/conference"> <li>Conference Room</li></a>
+                        <a href="/product-lab"><li>Equipments</li></a>
+                        <a href="/classroom"><li>Classroom</li></a>
+                        <a href="/labs"><li>Labs</li></a>
+                    </div>
                 </div>
+                <li class="h-h">About</li>
+                <li class="h-h">Home</li>   
+            </ul>
+           </div>
+    </header>
+    <br><br><br><br>
+    <div id="1" class="card w-50 mx-auto mt-5 " style="box-shadow: 0 5px 10px rgba(0,0,0,0.1);background-color:#fff;border-radius:12px;">
+        <div class="card-header text-center">
+           <h2> CNC LATHE </h2>
+           <h6> Model Name: TUTOR Lathe - ACE DESIGNERS<br>
+            Equipment Incharge: Dr.C.Paramasivam </h6>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                  <div class="text-left ">
+                    <h4 class="text-center">Specialities</h4>
+                        <ul><i class="bi bi-check-square-fill"></i> Swing over bed -500mm</ul>
+                        <ul><i class="bi bi-check-square-fill"></i> Max turning diameter -270mm</ul>
+                        <ul><i class="bi bi-check-square-fill"></i>  Max turning length -400mm</ul>
+                        <ul><i class="bi bi-check-square-fill"></i> X axis stroke -150mm</ul>
+                        <ul><i class="bi bi-check-square-fill"></i> Z axis stroke -400mm</ul>
+                        <ul><i class="bi bi-check-square-fill"></i> Controller-Fanuc01-Mate-TD</ul>
+                  </div>
             </div>
-            <li class="h-h">About</li>
-            <li class="h-h">Home</li>   
-        </ul>
-       </div>
-       <h3 id="h-title">PROTOTYPE MANUFACTURING EQUIPMENTS</h3>
-       <section >
-            <div class="e-m" id="1">
-                <h2>CNC LATHE</h2>
-                <h4>Model Name: TUTOR Lathe - ACE DESIGNERS</h4>
-                <h4>Equipment Incharge: Dr.C.Paramasivam</h4>
-                <button onclick="location.href='/equipments'">Book</button>
-                <div class="e-s">
-                    <h3>Specifications</h3>
-                    <p>Swing over bed -500mm</p>
-                    <p>Max turning diameter -270mm</p>
-                    <p>Max turning length -400mm</p>
-                    <p>X axis stroke -150mm</p>
-                    <p>Z axis stroke -400mm</p>
-                    <p>Controller-Fanuc01-Mate-TD</p> 
-                </div>
-                <div id="e-ca">
-                    <h3>Capabilities</h3>
-                    <p>Turning, Threading, Grooving</p>
-                    <p>Drilling, Boring, Step Turning</p>
-                    <p>Chamfering</p>
-                </div>                  
-            </div>    
-            <div class="e-m">
-                <h2>CNC MILLING MACHINE</h2>
-                <h4>Model Name: SPARK Milling - ACE DESIGNERS</h4>
-                <h4>Equipment Incharge: Dr.C.Paramasivam</h4>
-                <button onclick="location.href='/equipments'">Book</button>
-                <div class="e-s">
-                    <h3>Specifications</h3>
-                    <p>X axis stroke - 450mm</p>
-                    <p>Y axis stroke - 350mm</p>
-                    <p>Z axis stroke - 350mm</p>
-                    <p>Table size - 600×400mm</p>
-                    <p>Spindle speed - 2500 rpm</p>
-                    <p>Controller - Fanuc01-Mate-TD</p> 
-                </div>
-                <div id="e-ca">
-                    <h3>Capabilities</h3>
-                    <p>Endmilling, Form milling, Profile milling</p>
-                    <p> Pocketing</p>
-                    <p>Drilling</p>
-                </div>                  
-            </div> 
-            <div class="e-m" >
-                <h2>HYDRAULIC PRESS</h2>
-                <h4>Model Name: PRESSFORM 25 TONS PRESS</h4>
-                <h4>Equipment Incharge: Mr.C.Vignesh </h4>
-                <button  onclick="location.href='/equipments'">Book</button>
-                <div class="e-s">
-                    <h3>Specifications</h3>
-                    <p> Capacity - 25 tons</p>
-                    <p>Table - 500 x 500 mm</p>
-                    <p> Power - 5 HP</p>
-                    <p> Stroke Length - 400mm</p>
-                </div>
-                <div id="e-ca">
-                    <h3>Capabilities</h3>
-                    <p>Forming, Blanking</p>
-                    <p>Powder Metallurgy</p>
-                </div>                  
-            </div> 
-            <div class="e-m">
-                <h2>HYDRAULIC PRESS</h2>
-                <h4>Model Name: PRESSFORM 25 TONS PRESS</h4>
-                <h4>Equipment Incharge: Mr.C.Vignesh </h4>
-                <button onclick="location.href='/equipments'">Book</button>
-                <div class="e-s">
-                    <h3>Specifications</h3>
-                    <p> Capacity - 25 tons</p>
-                    <p>Table - 500 x 500 mm</p>
-                    <p> Power - 5 HP</p>
-                    <p> Stroke Length - 400mm</p>
-                </div>
-                <div id="e-ca">
-                    <h3>Capabilities</h3>
-                    <p>Forming, Blanking</p>
-                    <p>Powder Metallurgy</p>
-                </div>                  
-            </div> 
-            <div class="e-m">
-                <h2>HYDRAULIC PRESS</h2>
-                <h4>Model Name: PRESSFORM 25 TONS PRESS</h4>
-                <h4>Equipment Incharge: Mr.C.Vignesh </h4>
-                <button onclick="location.href='/equipments'">Book</button>
-                <div class="e-s">
-                    <h3>Specifications</h3>
-                    <p> Capacity - 25 tons</p>
-                    <p>Table - 500 x 500 mm</p>
-                    <p> Power - 5 HP</p>
-                    <p> Stroke Length - 400mm</p>
-                </div>
-                <div id="e-ca">
-                    <h3>Capabilities</h3>
-                    <p>Forming, Blanking</p>
-                    <p>Powder Metallurgy</p>
-                </div>                  
-            </div> 
-            <div class="e-m" style="margin-bottom: 150px;">
-                <h2>HYDRAULIC PRESS</h2>
-                <h4>Model Name: PRESSFORM 25 TONS PRESS</h4>
-                <h4>Equipment Incharge: Mr.C.Vignesh </h4>
-                <button onclick="location.href='/equipments'">Book</button>
-                <div class="e-s">
-                    <h3>Specifications</h3>
-                    <p> Capacity - 25 tons</p>
-                    <p>Table - 500 x 500 mm</p>
-                    <p> Power - 5 HP</p>
-                    <p> Stroke Length - 400mm</p>
-                </div>
-                <div id="e-ca">
-                    <h3>Capabilities</h3>
-                    <p>Forming, Blanking</p>
-                    <p>Powder Metallurgy</p>
-                </div>                  
-            </div> 
-       </section>
-    </body>
+            <div class="col-sm-6">
+                <div class="text-left">
+                    <h4 class="text-center">Capabilities</h4>
+                    <ul><i class="bi bi-check-square-fill"></i> Turning, Threading, Grooving</ul>
+                        <ul><i class="bi bi-check-square-fill"></i> Drilling, Boring, Step Turning</ul>
+                        <ul><i class="bi bi-check-square-fill"></i> Chamfering</ul>
+                  </div>
+            </div>
+          </div>
+    <div class="card-footer text-center">
+        <a href="/equipments" class="btn btn-primary w-25 ">Book</a>
+    </div>
+    </div>
+
+<!--CNC MILLING MACHINE--> 
+<div id="2" class="card w-50 mx-auto mt-5 " style="box-shadow: 0 5px 10px rgba(0,0,0,0.1);background-color:#fff;border-radius:12px;">
+        <div class="card-header text-center">
+           <h2> CNC MILLING MACHINE </h2>
+           <h6> Model Name: SPARK Milling - ACE DESIGNERS <br>
+            Equipment Incharge: Dr.C.Paramasivam  </h6>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                  <div class="text-left ">
+                    <h4 class="text-center">Specialities</h4>
+                        <ul><i class="bi bi-check-square-fill"></i> X axis stroke - 450mm</ul>
+                        <ul><i class="bi bi-check-square-fill"></i> Y axis stroke - 350mm</ul>
+                        <ul><i class="bi bi-check-square-fill"></i> Z axis stroke - 350mm</ul>
+                        <ul><i class="bi bi-check-square-fill"></i> Table size - 600×400mm</ul>
+                        <ul><i class="bi bi-check-square-fill"></i> Spindle speed - 2500 rpm</ul>
+                        <ul><i class="bi bi-check-square-fill"></i> Controller - Fanuc01-Mate-TD</ul>
+                  </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="text-left">
+                    <h4 class="text-center">Capabilities</h4>
+                    <ul><i class="bi bi-check-square-fill"></i>  Endmilling, Form milling, Profile milling,</ul>
+                        <ul><i class="bi bi-check-square-fill"></i> Pocketing, Drilling</ul>
+                  </div>
+            </div>
+          </div>
+    <div class="card-footer text-center">
+        <a href="/equipments" class="btn btn-primary w-25 ">Book</a>
+    </div>
+    </div>
+   
+<!--HYDRAULIC PRESS-->
+<div id="3" class="card w-50 mx-auto mt-5 " style="box-shadow: 0 5px 10px rgba(0,0,0,0.1);background-color:#fff;border-radius:12px;">
+    <div class="card-header text-center">
+       <h2> HYDRAULIC PRESS </h2>
+       <h6> Model Name: PRESSFORM 25 TONS PRESS <br>
+        Equipment Incharge: Mr.C.Vignesh  </h6>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+              <div class="text-left ">
+                <h4 class="text-center">Specialities</h4>
+                    <ul><i class="bi bi-check-square-fill"></i> Capacity - 25 tons</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Table - 500 x 500 mm</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Power - 5 HP</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Stroke Length - 400mm</ul>
+              </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="text-left">
+                <h4 class="text-center">Capabilities</h4>
+                <ul><i class="bi bi-check-square-fill"></i> Forming, Blanking</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Powder Metallurgy</ul>
+              </div>
+        </div>
+      </div>
+<div class="card-footer text-center">
+    <a href="/equipments" class="btn btn-primary w-25 ">Book</a>
+</div>
+</div>
+<!--TIG WELDING MACHINE-->
+<div id="4" class="card w-50 mx-auto mt-5 " style="box-shadow: 0 5px 10px rgba(0,0,0,0.1);background-color:#fff;border-radius:12px;">
+    <div class="card-header text-center">
+       <h2>TIG WELDING MACHINE </h2>
+       <h6> Model Name: FRONIUS TIG WELDING - Magicwave 2500 <br>
+        Equipment Incharge: Mr.J.Umarmohamed </h6>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+              <div class="text-left ">
+                <h4 class="text-center">Specialities</h4>
+                    <ul><i class="bi bi-check-square-fill"></i> Welding current max. 250.0 A</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Welding current min. 3.0 A</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Operating voltage 10, 1- 20V</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Open-circuit voltage 89.0 V</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Mains frequency 50-60Hz</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Mains Fuse 16A</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Dimension / b 250 mm</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Dimension / l 560 mm</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Weight 26.6 kg</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Degree of protection IP23</ul>
+              </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="text-left">
+                <h4 class="text-center">Capabilities</h4>
+                <ul><i class="bi bi-check-square-fill"></i>  Non Consumable Electrode Weld Plates upto 5 mm thickness</ul>
+              </div>
+        </div>
+      </div>
+<div class="card-footer text-center">
+    <a href="/equipments" class="btn btn-primary w-25 ">Book</a>
+</div>
+</div>
+
+<!--MIG WELDING MACHINE-->
+<div id="5" class="card w-50 mx-auto mt-5 " style="box-shadow: 0 5px 10px rgba(0,0,0,0.1);background-color:#fff;border-radius:12px;">
+    <div class="card-header text-center">
+       <h2> MIG WELDING MACHINE </h2>
+       <h6> Model Name: FRONIUS MIG WELDING - Magicwave 2500 <br>
+        Equipment Incharge: Mr.M.Karthic  </h6>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+              <div class="text-left ">
+                <h4 class="text-center">Specialities</h4>
+                    <ul><i class="bi bi-check-square-fill"></i> Welding current max. 320.0 A</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Welding current min. 3.0 A</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Operating voltage 14, 2- 30,0V</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Open-circuit voltage 73.0 V</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Mains frequency 50-60Hz</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Mains voltage 3 x 400V</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Mains Fuse 35A</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Dimension / b 300.0 mm</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Dimension / l 706.0 mm</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Weight 33.7 kg</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Degree of protection IP23</ul>
+              </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="text-left">
+                <h4 class="text-center">Capabilities</h4>
+                <ul><i class="bi bi-check-square-fill"></i> Intelligent Welding Weld Structural plates with thicknness</ul>
+                    
+              </div>
+        </div>
+      </div>
+<div class="card-footer text-center">
+    <a href="/equipments" class="btn btn-primary w-25 ">Book</a>
+</div>
+</div>
+
+<!--CNC TUBE BENDING MACHINE-->
+<div id="6" class="card w-50 mx-auto mt-5 md-5" style="box-shadow: 0 5px 10px rgba(0,0,0,0.1);background-color:#fff;border-radius:12px;">
+    <div class="card-header text-center">
+       <h2> CNC TUBE BENDING MACHINE </h2>
+       <h6>Model Name: 30CNC 2 Axis Tube Bending - Electro Pneumatic Make<br>
+        Equipment Incharge: Dr.PL.K.Palaniappan </h6>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+              <div class="text-left ">
+                <h4 class="text-center">Specialities</h4>
+                    <ul><i class="bi bi-check-square-fill"></i> 2 Axis CNC</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Max tube capacity (D×t) - 32 x 2mm</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Min tube capacity (D) - 6mm</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Max bend radius-120 mm</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Min bend radius - 15 mm</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Bend angle range - 5 to 180 Deg.</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Bending direction - Clockwise</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Push (Y-axis) max speed - 400 mm/s</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Turn (B-axis) max speed - 150 deg/s</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Bend (C-axis) max speed – 50 deg/s</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Chucking arrangement - Hydraulic</ul>
+              </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="text-left">
+                <h4 class="text-center">Capabilities</h4>
+                <ul><i class="bi bi-check-square-fill"></i> Turning, Threading, Grooving</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Drilling, Boring, Step Turning</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Chamfering</ul>
+              </div>
+        </div>
+      </div>
+<div class="card-footer text-center">
+    <a href="/equipments" class="btn btn-primary w-25 ">Book</a>
+</div>
+</div>
+</body>
 </html>

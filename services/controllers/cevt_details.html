@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel= "stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<style>
+    [class*="col-"] {
+       width: 100%;
+       box-sizing: border-box;
+       float: left;
+       }
+       body{
+           margin: 0%;
+           background-color: #ecf3e5;
+           height: auto;
+       }
+       .header{
+           border-bottom: solid;
+           border-width: 0.1px;
+           background-color: #373b69;
+           border-color: #a6a6a6;
+           font-family: sans-serif;
+           color:white;
+           position: absolute;
+           height: 70px;
+       }
+       .header h2{
+           float:left;
+           padding: 0px 20px;
+           margin: 10px;
+       }
+       #e-he{
+           float:right;
+           list-style: none;
+           
+
+       }
+       li,.hel{
+           float: right;
+           padding: 4px 8px;
+           margin:10px 4px;
+           transition: opacity 0.5s;
+       }
+       #e-he .h-h:hover{
+           border: solid;
+           border-width: 1px;
+           border-radius: 10px;
+           border-color:  white;
+           color: white;
+           opacity: 0.5;
+       }
+     
+       .service1{
+           z-index: 3;
+           display: none;
+           position: absolute;
+           right: 5%;
+           color:#666666;
+           margin:5px 0px 0px -8px;
+           background-color: white;
+           border-radius: 20px;
+       }
+       .service1 li{
+           padding: 10px;
+           float: none;
+       }
+       .service1 li:hover{
+           background-color: #373b69;
+           color:white;
+           border: none;
+           border-radius:15px;
+       }
+       .hel:hover .service1{
+           display: block;
+       }
+       .body1{
+           perspective: 1000px;     
+       }
+        
+       .service1 a{
+           text-decoration: none;
+       }
+       #h-logout{
+           color: white;
+       }
+</style>
+<body style="background-color: #f5f5f5;">
+    <header>
+        <div class="header col-12">
+            <h2>TSS CARS SERVICES</h2>
+            
+            <ul id="e-he">
+                <li class="h-h">Report</li>
+                <a id="h-logout" href="/logout"><li class="h-h">logout</li></a>
+                <div class="hel"><div class="service">Service</div>
+                
+                    <div class="service1">
+                        <a href="/conference"> <li>Conference Room</li></a>
+                        <a href="/product-lab"><li>Equipments</li></a>
+                        <a href="/classroom"><li>Classroom</li></a>
+                        <a href="/labs"><li>Labs</li></a>
+                    </div>
+                </div>
+                <li class="h-h">About</li>
+                <li class="h-h">Home</li>   
+            </ul>
+           </div>
+    </header>
+    <br><br><br><br>
+<!--MIXED SIGNAL OSCILLOSCOPE-->
+<div id="1" class="card w-75 mx-auto mt-5 " style="box-shadow: 0 5px 10px rgba(0,0,0,0.1);background-color:#fff;border-radius:12px;">
+    <div class="card-header text-center">
+       <h2> MIXED SIGNAL OSCILLOSCOPE </h2>
+       <h6>Equipment Incharge: Dr.S.Arockia Edwin Xavier</h6>
+    </div>
+    <div class="row">
+    <div class="col-sm-4">
+              <div class="text-left ">
+                <h4 class="text-center">Specialities</h4>
+                    <ul><i class="bi bi-check-square-fill"></i> Model :MDO4024C</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Make :Tektronix</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Channel : 4 CH</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Frequency : 200 MHz</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Record length :20M </ul>
+              </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="text-left">
+                <h4 class="text-center">Capabilities</h4>
+                <ul><i class="bi bi-check-square-fill"></i> Built-in spectrum analyzer</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Power Supply Measurement & Analysis with Bench Oscilloscopes</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Capture an ultra-wide band in a single capture to view interactions among multiple wireless technologies</ul>
+              </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="text-left">
+                <h4 class="text-center">Applications</h4>
+                <ul><i class="bi bi-check-square-fill"></i>  Analysis of power quality, switching loss, harmonics</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> THD analysis for different</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Voltage/current ripple, modulation, and safe operating area measurements</ul>
+              </div>
+        </div>
+      </div>
+<div class="card-footer text-center">
+    <a href="/cevt" class="btn btn-primary w-25 ">Book</a>
+</div>
+</div>
+
+<!--PICOSCOPE-->
+<div id="2" class="card w-75 mx-auto mt-5 " style="box-shadow: 0 5px 10px rgba(0,0,0,0.1);background-color:#fff;border-radius:12px;">
+    <div class="card-header text-center">
+       <h2> PICOSCOPE</h2>
+       <h6>Equipment Incharge: Dr.S.Arockia Edwin Xavier</h6>
+    </div>
+    <div class="row">
+    <div class="col-sm-4">
+              <div class="text-left ">
+                <h4 class="text-center">Specialities</h4>
+                    <ul><i class="bi bi-check-square-fill"></i> Model :PP923</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Make : Pico technology</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Channel : 4 Channel</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> bandwidth: 12 GHz</ul>
+              </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="text-left">
+                <h4 class="text-center">Capabilities</h4>
+                <ul><i class="bi bi-check-square-fill"></i> Powerful mathematical analysis</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> High-resolution cursor measurement</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Automatic waveform measurements with statistics</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Waveform processing including FFT</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Time and voltage histograms</ul>
+              </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="text-left">
+                <h4 class="text-center">Applications</h4>
+                <ul><i class="bi bi-check-square-fill"></i> Harmonic analysis for different <br> non-linear loads</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Timing analysis</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Digital system design and characterization</ul>
+                <ul><i class="bi bi-check-square-fill"></i> IC package characterization</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Telecom service and manufacturing</ul>
+              </div>
+        </div>
+      </div>
+<div class="card-footer text-center">
+<a href="/cevt" class="btn btn-primary w-25 ">Book</a>
+</div>
+</div>
+
+<!--DATA LOGGER-->
+<div id="3" class="card w-75 mx-auto mt-5 " style="box-shadow: 0 5px 10px rgba(0,0,0,0.1);background-color:#fff;border-radius:12px;">
+    <div class="card-header text-center">
+       <h2> DATA LOGGER</h2>
+       <h6>Equipment Incharge: Dr.G.Sivasankar</h6>
+    </div>
+    <div class="row">
+    <div class="col-sm-4">
+              <div class="text-left ">
+                <h4 class="text-center">Specialities</h4>
+                    <ul><i class="bi bi-check-square-fill"></i> Model : LR8400-20</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Make : HIOKI</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Channels : 30</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Built in with USB 2.0 or 100 BASE-TX LAN interfaces</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> 5.7” TFT color display</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Write data to USB memory stick or CF card in real-time</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Data log speed : 10ms</ul>
+              </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="text-left">
+                <h4 class="text-center">Capabilities</h4>
+                <ul><i class="bi bi-check-square-fill"></i> Recording multiple channels of voltage, temperature, resistance, humidity and pulse signals</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Maximum rated channel-to-channel and channel-to-ground voltage of 300 V</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Testing of radio frequency, RF circuits, modules and units</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> PC application with measurement and analysis functionality</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Maintenance and inspection of equipment</ul>
+              </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="text-left">
+                <h4 class="text-center">Applications</h4>
+                <ul><i class="bi bi-check-square-fill"></i> Ideal for battery, automotive, and environmental measurement</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Recording of wind speed, temperature, relative humidity, solar radiation</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Measures variations in light intensity</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Gas pressure recording</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Vehicle testing (including crash testing)</ul>
+                <ul><i class="bi bi-check-square-fill"></i>Accident data recorder</ul>
+                <ul><i class="bi bi-check-square-fill"></i>Train event recorder</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Event data recorder, Voyage data recorder</ul>
+            </div>
+        </div>
+      </div>
+<div class="card-footer text-center">
+<a href="/cevt" class="btn btn-primary w-25 ">Book</a>
+</div>
+</div>
+
+<!--SPECTRUM ANALYSER-->
+<div id="4" class="card w-75 mx-auto mt-5 " style="box-shadow: 0 5px 10px rgba(0,0,0,0.1);background-color:#fff;border-radius:12px;">
+    <div class="card-header text-center">
+       <h2> SPECTRUM ANALYSER</h2>
+       <h6>Equipment Incharge: Dr.G.Sivasankar</h6>
+    </div>
+    <div class="row">
+    <div class="col-sm-4">
+              <div class="text-left ">
+                <h4 class="text-center">Specialities</h4>
+                    <ul><i class="bi bi-check-square-fill"></i> Model : T3SA3200</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Bandwidth : 9 KHz -3.2 GHz</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Number of channels - 1</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Ultra-wide capture bandwidth ≥1 GHz</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Minimum Resolution Bandwidth : 1 Hz</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Total Amplitude Accuracy less than 0.7 dB</ul>
+
+              </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="text-left">
+                <h4 class="text-center">Capabilities</h4>
+                <ul><i class="bi bi-check-square-fill"></i> Time-synchronized capture of spectrum analyzer with analog and digital acquisitions</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Spectral purity of continuous-wave (CW) signals.</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Percentage of modulation of amplitude-modulated (AM) signals</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Deviation of frequency modulated (FM) signals.</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Noise such as impulse and random noise.</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Filter frequency response..</ul>
+              </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="text-left">
+                <h4 class="text-center">Applications</h4>
+                <ul><i class="bi bi-check-square-fill"></i> Noise figure measurement</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Phase noise measurements</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Electromagnetic interference and electromagnetic compatibility measurements</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Power and frequency measurement</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Investigation of any spurious or unwanted signals</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Automotive radar test</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Wideband FMCW Modulation Test</ul>
+            </div>
+        </div>
+      </div>
+<div class="card-footer text-center">
+<a href="/cevt" class="btn btn-primary w-25 ">Book</a>
+</div>
+</div>
+
+<!--LCR METER-->
+<div id="5" class="card w-75 mx-auto mt-5 " style="box-shadow: 0 5px 10px rgba(0,0,0,0.1);background-color:#fff;border-radius:12px;">
+    <div class="card-header text-center">
+       <h2> FUNCTION GENERATOR, LCR METER , LOGGING MULTIMETER, SOLDERING STATION</h2>
+       <h6>Equipment Incharge: Dr.G.Sivasankar</h6>
+    </div>
+    <div class="row">
+    <div class="col-sm-4">
+              <div class="text-left ">
+                <h4 class="text-center">Function Generator</h4>
+                    <ul><i class="bi bi-check-square-fill"></i> Model : T3AFG40</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Bandwidth : up to 120MHz</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Channels : 2</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Memory : 8Mpts/ch</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Sample Rate : 1.2 GS/s, 10 MHz Reference Input/Output</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Connectivity : USB Host, USB Device, LAN</ul>
+
+              </div>
+        </div>
+        <div class="col-sm-4">
+              <div class="text-left">
+                <h4 class="text-center">LCR Meter</h4>
+                <ul><i class="bi bi-check-square-fill"></i> Model : Keysight U1733C</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Resolution :20,000 counts , Accuracy: 0.2%</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Test frequencies :100Hz, 120Hz and 1kHz, 10kHz and 100kHz</ul>
+              
+            </div>
+            <div class="text-left">
+                <h4 class="text-center">Logging Multimeter</h4>
+                <ul><i class="bi bi-check-square-fill"></i> Model :Fluke 287 , Capacitance range : 100 mF</ul>
+                <ul><i class="bi bi-check-square-fill"></i> AC bandwidth :100 kHz , DC accuracy : 0.025%</ul>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="text-left">
+                <h4 class="text-center">Soldering Station</h4>
+                <ul><i class="bi bi-check-square-fill"></i> Model : WSD 811</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Electrically controlled / Digital soldering station</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Max Temperature : 450 0 C , Power :80W</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Operating Voltage: 230V</ul>
+              </div>
+            
+        </div>
+      </div>
+<div class="card-footer text-center">
+<a href="/cevt" class="btn btn-primary w-25 ">Book</a>
+</div>
+</div>
+
+<!--PROGRAMMABLE DC POWER SUPPLY-->
+<div id="6" class="card w-75 mx-auto mt-5 " style="box-shadow: 0 5px 10px rgba(0,0,0,0.1);background-color:#fff;border-radius:12px;">
+    <div class="card-header text-center">
+       <h2> PROGRAMMABLE DC POWER SUPPLY</h2>
+       <h6>Equipment Incharge: Dr.S.Arockia Edwin Xavier</h6>
+    </div>
+    <div class="row">
+    <div class="col-sm-4">
+              <div class="text-left ">
+                <h4 class="text-center">Specifications</h4>
+                    <ul><i class="bi bi-check-square-fill"></i> Model :2260B (80-40)</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Make : Tektronix</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Voltage : 0-80V</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Current :40.5A/ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Power :1080W</ul>
+              </div>
+        </div>
+        <div class="col-sm-4">
+              <div class="text-left">
+                <h4 class="text-center">Capabilities</h4>
+                <ul><i class="bi bi-check-square-fill"></i> Prevents damage from inrush current to loads that have low impedance when power is initially supplied.</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Allows simulating a battery’s output characteristics</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Supports creating voltage profiles that simulate how a battery responds to a fast changing load current</ul>
+              
+            </div>
+           
+        </div>
+        <div class="col-sm-4">
+            <div class="text-left">
+                <h4 class="text-center">Applications</h4>
+                <ul><i class="bi bi-check-square-fill"></i> Environmental test, stress test, and accelerated life testing</ul>
+                <ul><i class="bi bi-check-square-fill"></i> LED and high power component testing</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Battery research and test</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Operating Voltage: 230V</ul>
+              </div>
+        </div>
+      </div>
+<div class="card-footer text-center">
+<a href="/cevt" class="btn btn-primary w-25 ">Book</a>
+</div>
+</div>
+
+<!--PROGRAMMABLE AC SOURCE-->
+<div id="7" class="card w-75 mx-auto mt-5 " style="box-shadow: 0 5px 10px rgba(0,0,0,0.1);background-color:#fff;border-radius:12px;">
+    <div class="card-header text-center">
+       <h2>PROGRAMMABLE AC SOURCE </h2>
+       <h6>
+        Equipment Incharge: Dr.R.Medeswaran (Center In-Charge) &
+        Dr.B.Ashok Kumar</h6>
+    </div>
+    <div class="row">
+    <div class="col-sm-4">
+              <div class="text-left ">
+                <h4 class="text-center">Specifications</h4>
+                    <ul><i class="bi bi-check-square-fill"></i> AC Power:12 KVA (4 kVA per phase)</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Voltage Range : 0-150V/0-300V</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Frequency : DC, 15Hz – 1500Hz</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Max Current :96 A/32A</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Power factor : 0 to unity</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Programmable Voltage and Current limit</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Analog Programmable Interfaces</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Remote Interface: GPIB, RS-232, USB and Ethernet</ul>
+              </div>
+        </div>
+        <div class="col-sm-4">
+              <div class="text-left">
+                <h4 class="text-center">Capabilities</h4>
+                <ul><i class="bi bi-check-square-fill"></i> Single phase and Three phase outputs Power Line Disturbance Simulation (cycle dropout, transient spike, brown out, voltage dips, interruptions)</ul>
+                <ul><i class="bi bi-check-square-fill"></i>  periodic and non-periodic harmonic distorted waveform, Interharmonic synthesis</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Highest power density by its advanced high speed PWM mode design</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Power Analyzer for Comprehensive Measurements</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Programmable Output Impedance</ul>
+                <ul><i class="bi bi-check-square-fill"></i> AC Source (Master Slave) Parallel operation</ul>
+            </div>
+           
+        </div>
+        <div class="col-sm-4">
+            <div class="text-left">
+                <h4 class="text-center">Applications</h4>
+                <ul><i class="bi bi-check-square-fill"></i> IEC 61000-4-11 pre-compliance test and IEC61000-4-14/IEC61000-4-28 compliance tests</ul>
+                <ul><i class="bi bi-check-square-fill"></i> IEC 61000-4-13 compliance test</ul>
+                <ul><i class="bi bi-check-square-fill"></i> simulate the test condition of unbalanced input current for rectified load Digital system design and characterization</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Measure THD and up to 40 orders of current harmonics</ul>
+                <ul><i class="bi bi-check-square-fill"></i> IEC 61000-3-3 Flicker tests</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Inrush Current Testing, bench-top R/D design verification, quality assurance</ul>
+            </div>
+        </div>
+      </div>
+<div class="card-footer text-center">
+<a href="/cevt" class="btn btn-primary w-25 ">Book</a>
+</div>
+</div>
+
+<!--ELECTRICAL SAFETY COMPLIANCE ANALYSER-->
+<div id="8" class="card w-75 mx-auto mt-5 " style="box-shadow: 0 5px 10px rgba(0,0,0,0.1);background-color:#fff;border-radius:12px;">
+    <div class="card-header text-center">
+       <h2>ELECTRICAL SAFETY COMPLIANCE ANALYSER </h2>
+       <h6>
+        Equipment Incharge: Dr.R.Medeswaran (Center In-Charge) &
+        Dr.B.Ashok Kumar </h6>
+    </div>
+    <div class="row">
+    <div class="col-sm-4">
+              <div class="text-left ">
+                <h4 class="text-center">Specifications</h4>
+                    <ul><i class="bi bi-check-square-fill"></i> Model : ESA-150A</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Make: Extech</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Capacitive-type touch-screen</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Colored and graphic data</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> Built-in scanner function</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> ACW : 5 kV AC / 100 mA , IR : 1kV DC/ 50GΩt</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> DCW : 6kV DC / 20mA ,GB : 40A / 600 mΩ/ 8V AC</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> LLT : 16A / 277V AC/ 15 to1 MHz , AC source : 500VA</ul>
+              </div>
+        </div>
+        <div class="col-sm-4">
+              <div class="text-left">
+                <h4 class="text-center">Capabilities</h4>
+                <ul><i class="bi bi-check-square-fill"></i> High Voltage withstand Test (AC&DC)</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Insulation Resistance Test , AC power sources</ul>
+                <ul><i class="bi bi-check-square-fill"></i> AC Ground Bond Test ,Ground Continuity Test</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Leakage current Test , Functional Run test</ul>               
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="text-left">
+                <h4 class="text-center">Applications</h4>
+
+                <ul><i class="bi bi-check-square-fill"></i> IEC 60335 , IEC 61010 compliance tests for electrical products</ul>
+                <ul><i class="bi bi-check-square-fill"></i> To ensure insulation and isolation from operating voltage</ul>
+                <ul><i class="bi bi-check-square-fill"></i> To test insulation resistance in motor and transformer winding , cable/connector assemblies , relays
+                </ul>
+                <ul><i class="bi bi-check-square-fill"></i> To assure the integrity of connection</ul>
+            </div>
+        </div>
+      </div>
+<div class="card-footer text-center">
+<a href="/cevt" class="btn btn-primary w-25 ">Book</a>
+</div>
+</div>
+
+<!--BATTERY SIMULATOR-->
+<div itemid="9" id="9" class="card w-75 mx-auto mt-5 " style="box-shadow: 0 5px 10px rgba(0,0,0,0.1);background-color:#fff;border-radius:12px;">
+    <div class="card-header text-center">
+       <h2>BATTERY SIMULATOR </h2>
+       <h6>
+        Equipment Incharge: Dr.R.Medeswaran (Center In-Charge) &
+        Dr.B.Ashok Kumar </h6>
+    </div>
+    <div class="row">
+    <div class="col-sm-4">
+              <div class="text-left ">
+                <h4 class="text-center">Specifications</h4>
+                    <ul><i class="bi bi-check-square-fill"></i> Make Chrome</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> 69200-1 charge / discharge controller</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> 69225 - Regenerative charge / discharge tester 100V/50A/2.5kW/4 CH</ul>
+                    <ul><i class="bi bi-check-square-fill"></i>  A691101 -DC/AC Bi-direction converter</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> A692000 - BMS communication via CAN bus and SM bus with 4 channels</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> A170201 - IPC for Model 17020/ 17030 (include 19” LCD monitor and windows software)</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> A170202- Battery Simulator soft panel</ul>
+                    <ul><i class="bi bi-check-square-fill"></i> A170200 -Software with integration charge with IPC</ul>
+              </div>
+        </div>
+        <div class="col-sm-4">
+              <div class="text-left">
+                <h4 class="text-center">Capabilities</h4>
+                <ul><i class="bi bi-check-square-fill"></i> Multichannel battery packs state simulation</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Dynamic current charge and discharge simulation</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Independent channel operation, testing data, and testing process</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Life cycle test , Balance control test, DCIR test, Capacity test , Performance test, Reliability test, Over charge/discharge test, Thermal test.</ul>               
+                <ul><i class="bi bi-check-square-fill"></i> Constant current (CC), voltage (CV), power (CP), and voltage-limit current (CC-CV) mode</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Life cycle test , Balance control test, DCIR test, Capacity test , Performance test, Reliability test, Over charge/discharge test, Thermal test.</ul>
+                <ul><i class="bi bi-check-square-fill"></i> BMS Data recording,Parallel functions,Drive cycle simulator</ul>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="text-left">
+                <h4 class="text-center">Applications</h4>
+                <ul><i class="bi bi-check-square-fill"></i> Battery charger testing</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Battery Powered systems testing</ul>
+                <ul><i class="bi bi-check-square-fill"></i> EV battery module</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Electric Scooter and bike</ul>
+                <ul><i class="bi bi-check-square-fill"></i> Car Battery</ul>
+                <ul><i class="bi bi-check-square-fill"></i> UPS, Energy Storage battery</ul>
+            </div>
+        </div>
+      </div>
+<div class="card-footer text-center">
+<a href="/cevt" class="btn btn-primary w-25 ">Book</a>
+</div>
+</div>
+</body>
+</html>
