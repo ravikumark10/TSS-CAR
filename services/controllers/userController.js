@@ -149,8 +149,6 @@ var approve1=[];
 global.request=request1;
 global.approve=approve1;
 global.result=timechart;
-//global.x=x_val;
-global.x=0;
 global.date_val="";
 var result=["07:00 AM","08:00 AM","09:00 AM","10:00 AM","11:00 AM","12:00 PM","01:00 PM","02:00 PM","03:00 PM","04:00 PM","05:00 PM","06:00 PM","07:00 PM","08:00 PM","09:00 PM"];
 //view conference hall
@@ -160,6 +158,8 @@ exports.conferencehall=(req,res)=>{
 }
 
 //to display date values for conference hall
+var approve2=[];
+var request2=[];
 exports.datecall=(req,res)=>{
     var value_date=req.body.Date;
     global.date_val=value_date;
@@ -170,23 +170,31 @@ exports.datecall=(req,res)=>{
         var sql1=`SELECT stime,etime FROM log WHERE Hall='conference' AND Admin='none'  AND sdate='${value_date}'`;
         var sql2=`SELECT stime,etime FROM log WHERE Hall='conference' AND Admin='Approved' AND sdate='${value_date}'`;
         connection.query(sql1,(err,result1)=>{
-            global.x=1
             if (err) throw err;
             connection.query(sql2,(err,result2)=>{
+                console.log(result2);
                 if(result1.length>0){
-                    var n1=result.indexOf(result1[0].stime);
-                     var n2=result.indexOf(result1[0].etime);
-                     request1=result.slice(n1,n2+1);
-                     console.log("request:"+request1);
+                    for(var i=0;i<result1.length;i++){
+                        var n1=result.indexOf(result1[0].stime);
+                        var n2=result.indexOf(result1[0].etime);
+                        request1=result.slice(n1,n2);
+                        request2=request2.concat(request1);
+                        console.log("request:"+request2);
+                    }
+                 
                   }
                 if(result2.length>0){
-                    var n1=result.indexOf(result2[0].stime);
-                    var n2=result.indexOf(result2[0].etime);
-                    approve1=result.slice(n1,n2+1);
-                   console.log("approve:"+approve1);
+                    for(var i=0;i<result2.length;i++){
+                        var n1=result.indexOf(result2[i].stime);
+                        var n2=result.indexOf(result2[i].etime);
+                        approve1=result.slice(n1,n2);
+                        approve2=approve2.concat(approve1);
+                       console.log("approve:"+approve2);
+                    }
+                   console.log(approve2);
                 }
-                request=request1;
-                approve=approve1;
+                request=request2;
+                approve=approve2;
                 res.redirect('/conference');
              })
          });
@@ -276,15 +284,14 @@ exports.classroom=(req,res)=>{
 }
 
 //to display date values for classroom
+var c_request2=[];
+var c_approve2=[];
 exports.datecall1=(req,res)=>{
     c_date_val=req.body.Date;
     global.c_formattedDate=c_date_val;
     console.log(c_date_val);
     var floor=req.body.floor;
     floor_val=floor;
-    //res.render('conference',{formattedDate});
-    c_val=1;
-    c=c_val;
     pool.getConnection((err,connection)=>{
         
         var sql1=`SELECT stime,etime FROM log WHERE Hall='${floor}' AND Admin='none'  AND sdate='${c_date_val}'`;
@@ -293,19 +300,27 @@ exports.datecall1=(req,res)=>{
             if (err) throw err;
             connection.query(sql2,(err,result2)=>{
                 if(result1.length>0){
-                     var n1=c_result.indexOf(result1[0].stime);
-                     var n2=c_result.indexOf(result1[0].etime);
-                     c_request1=c_result.slice(n1,n2+1);
-                     console.log("request:"+c_request1);
+                    for(var i=0;i<result1.length;i++){
+                        var n1=c_result.indexOf(result1[0].stime);
+                        var n2=c_result.indexOf(result1[0].etime);
+                        c_request1=c_result.slice(n1,n2);
+                        c_request2=c_request2.concat(c_request1);
+                        console.log("request:"+c_request2);
+                    }
+                     
                   }
                  if(result2.length>0){
-                     var n1=c_result.indexOf(result2[0].stime);
-                     var n2=c_result.indexOf(result2[0].etime);
-                     c_approve1=c_result.slice(n1,n2+1);
-                   console.log("approve:"+c_approve1);
+                     for(var i=0;i<result2.length;i++){
+                        var n1=c_result.indexOf(result2[0].stime);
+                        var n2=c_result.indexOf(result2[0].etime);
+                        c_approve1=c_result.slice(n1,n2);
+                        c_approve2=c_approve2.concat(c_approve1);
+                        console.log("approve:"+c_approve2);
+                     }
+                     
                 }
-                c_request=c_request1;
-                c_approve=c_approve1;
+                c_request=c_request2;
+                c_approve=c_approve2;
                 res.redirect('/classroom');
              })
          });
@@ -393,6 +408,8 @@ exports.equipments=(req,res)=>{
 };
 
 //to display date values for equipments
+var e_request2=[];
+var e_approve2=[];
 exports.e_datecall=(req,res)=>{
     e_date_val=req.body.Date;
     global.e_formattedDate=e_date_val;
@@ -406,23 +423,29 @@ exports.e_datecall=(req,res)=>{
         var sql2=`SELECT stime,etime FROM log WHERE Hall='${machine}' AND Admin='Approved' AND sdate='${e_date_val}'`;
         connection.query(sql1,(err,result1)=>{
             if (err) throw err;
-            e_request1=[];
-            e_approve1=[];
             connection.query(sql2,(err,result2)=>{
                 if(result1.length>0){
-                     var n1=e_result.indexOf(result1[0].stime);
-                     var n2=e_result.indexOf(result1[0].etime);
-                     e_request1=e_result.slice(n1,n2+1);
-                     console.log("request:"+e_request1);
+                    for(var i=0;i<result1.length;i++){
+                        var n1=e_result.indexOf(result1[0].stime);
+                        var n2=e_result.indexOf(result1[0].etime);
+                        e_request1=e_result.slice(n1,n2);
+                        e_request2=e_request2.concat(e_request1);
+                        console.log("request:"+e_request2);
+                    }
+                    
                   }
                 if(result2.length>0){
-                     var n1=e_result.indexOf(result2[0].stime);
-                     var n2=e_result.indexOf(result2[0].etime);
-                     e_approve1=e_result.slice(n1,n2+1);
-                   console.log("approve:"+e_approve1);
+                    for(var i=0;i<result2.length;i++){
+                        var n1=e_result.indexOf(result2[0].stime);
+                        var n2=e_result.indexOf(result2[0].etime);
+                        e_approve1=e_result.slice(n1,n2);
+                        e_approve2=e_approve2.concat(e_approve1);
+                        console.log("approve:"+e_approve2);
+                    }
+                     
                 }
-                e_request=e_request1;
-                e_approve=e_approve1;
+                e_request=e_request2;
+                e_approve=e_approve2;
                 res.redirect('/equipments');
              })
          });
@@ -511,6 +534,8 @@ exports.displayCenter=(req,res)=>{
 }
 
 //to display date values for display center
+var d_request2=[];
+var d_approve2=[];
 exports.d_datecall=(req,res)=>{
     var value_date=req.body.Date;
     d_date_val=value_date;
@@ -521,23 +546,29 @@ exports.d_datecall=(req,res)=>{
         var sql2=`SELECT stime,etime FROM log WHERE Hall='Display Center' AND Admin='Approved' AND sdate='${d_value_date}'`;
         connection.query(sql1,(err,result1)=>{
             if (err) throw err;
-             d_request1=[];
-             d_approve1=[];
             connection.query(sql2,(err,result2)=>{
                 if(result1.length>0){
-                    var n1=d_result.indexOf(result1[0].stime);
-                     var n2=d_result.indexOf(result1[0].etime);
-                     d_request1=result.slice(n1,n2+1);
-                     console.log("request:"+d_request1);
+                    for(var i=0;i<result1.length;i++){
+                        var n1=d_result.indexOf(result1[0].stime);
+                        var n2=d_result.indexOf(result1[0].etime);
+                        d_request1=result.slice(n1,n2);
+                        d_request2=d_request2.concat(d_request1);
+                        console.log("request:"+d_request2);
+                    }
+                  
                   }
-                else if(result2.length>0){
-                    var n1=d_result.indexOf(result2[0].stime);
-                    var n2=d_result.indexOf(result2[0].etime);
-                    d_approve1=result.slice(n1,n2+1);
-                   console.log("approve:"+d_approve1);
+                if(result2.length>0){
+                    for(var i=0;i<result2.length;i++){
+                        var n1=d_result.indexOf(result2[0].stime);
+                        var n2=d_result.indexOf(result2[0].etime);
+                        d_approve1=result.slice(n1,n2);
+                        d_approve2=d_approve2.concat(d_approve1);
+                        console.log("approve:"+d_approve2);
+                    }
+                   
                 }
-                d_request=d_request1;
-                d_approve=d_approve1;
+                d_request=d_request2;
+                d_approve=d_approve2;
                 res.redirect('/displaycenter');
              })
          });
@@ -627,6 +658,8 @@ exports.cevt=(req,res)=>{
 };
 
 //to display date values for equipments
+var ce_request2=[];
+var ce_approve2=[];
 exports.ce_datecall=(req,res)=>{
     ce_date_val=req.body.Date;
     global.ce_formattedDate=ce_date_val;
@@ -640,23 +673,29 @@ exports.ce_datecall=(req,res)=>{
         var sql2=`SELECT stime,etime FROM log WHERE Hall='${ce_machine}' AND Admin='Approved' AND sdate='${ce_date_val}'`;
         connection.query(sql1,(err,result1)=>{
             if (err) throw err;
-            ce_request1=[];
-            ce_approve1=[];
             connection.query(sql2,(err,result2)=>{
                 if(result1.length>0){
-                     var n1=ce_result.indexOf(result1[0].stime);
-                     var n2=ce_result.indexOf(result1[0].etime);
-                     ce_request1=ce_result.slice(n1,n2+1);
-                     console.log("request:"+ce_request1);
+                    for(var i=0;i<result1.length;i++){
+                        var n1=ce_result.indexOf(result1[0].stime);
+                        var n2=ce_result.indexOf(result1[0].etime);
+                        ce_request1=ce_result.slice(n1,n2);
+                        ce_request2=ce_request2.concat(ce_request1);
+                        console.log("request:"+ce_request2);
+                    }
+                  
                   }
                 if(result2.length>0){
-                     var n1=ce_result.indexOf(result2[0].stime);
-                     var n2=ce_result.indexOf(result2[0].etime);
-                     ce_approve1=ce_result.slice(n1,n2+1);
-                   console.log("approve:"+ce_approve1);
+                    for(var i=0;i<result2.length;i++){
+                        var n1=ce_result.indexOf(result2[0].stime);
+                        var n2=ce_result.indexOf(result2[0].etime);
+                        ce_approve1=ce_result.slice(n1,n2);
+                        ce_approve2=ce_approve2.concat(ce_approve1);
+                        console.log("approve:"+ce_approve2);
+                    }
+                     
                 }
-                ce_request=ce_request1;
-                ce_approve=ce_approve1;
+                ce_request=ce_request2;
+                ce_approve=ce_approve2;
                 res.redirect('/cevt');
              })
          });
@@ -741,13 +780,15 @@ global.cd_result=cd_timechart;
 
 global.cd_date_val="";
 var cd_result=["07:00 AM","08:00 AM","09:00 AM","10:00 AM","11:00 AM","12:00 PM","01:00 PM","02:00 PM","03:00 PM","04:00 PM","05:00 PM","06:00 PM","07:00 PM","08:00 PM","09:00 PM"];
-//view conference hall
+//view cds hall
 exports.cds=(req,res)=>{
     console.log(cd_date_val);
     res.render('cds',{cd_date_val,cd_request,cd_approve,cd_result,user,user_d});
 }
 
-//to display date values for conference hall
+//to display date values for cds hall
+var cd_request2=[];
+var cd_approve2=[];
 exports.cd_datecall=(req,res)=>{
     var value_date=req.body.Date;
     global.cd_date_val=value_date;
@@ -760,26 +801,34 @@ exports.cd_datecall=(req,res)=>{
             if (err) throw err;
             connection.query(sql2,(err,result2)=>{
                 if(result1.length>0){
-                    var n1=cd_result.indexOf(result1[0].stime);
-                     var n2=cd_result.indexOf(result1[0].etime);
-                     cd_request1=cd_result.slice(n1,n2+1);
-                     console.log("request:"+cd_request1);
+                    for(var i=0;i<result1.length;i++){
+                        var n1=cd_result.indexOf(result1[0].stime);
+                        var n2=cd_result.indexOf(result1[0].etime);
+                        cd_request1=cd_result.slice(n1,n2);
+                        cd_request2=cd_request2.concat(cd_request1);
+                        console.log("request:"+cd_request2);
+                    }
+                    
                   }
                 if(result2.length>0){
-                    var n1=cd_result.indexOf(result2[0].stime);
-                    var n2=cd_result.indexOf(result2[0].etime);
-                    cd_approve1=cd_result.slice(n1,n2+1);
-                   console.log("approve:"+cd_approve1);
+                    for(var i=0;i<result2.length;i++){
+                        var n1=cd_result.indexOf(result2[0].stime);
+                        var n2=cd_result.indexOf(result2[0].etime);
+                        cd_approve1=cd_result.slice(n1,n2);
+                        cd_approve2=cd_approve2.concat(cd_approve1);
+                        console.log("approve:"+cd_approve2);
+                    }
+                    
                 }
-                cd_request=cd_request1;
-                cd_approve=cd_approve1;
+                cd_request=cd_request2;
+                cd_approve=cd_approve2;
                 res.redirect('/cds');
              })
          });
     })
 }
 
-// conference hall booking register
+// cds lab booking register
 exports.cds_book=(req,res)=>{
     const id=Math.round(Math.random() * (100-10)+10);
     const hall='cds';
