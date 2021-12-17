@@ -64,4 +64,10 @@ router.post('/cd_datedisplay',userController.cd_datecall);
 router.post('/cds-book',userController.cds_book);
 router.get('/cds-details',userController.cds_details);
 
+//forgot password
+router.get('/forgotpassword',userController.forgotpassword);
+router.post('/forgotsubmit',userController.forgotsubmit);
+router.get('/resetpassword/:id/:token',userController.resetpassword);
+router.post('/resetsubmit/:id/:token',userController.resetsubmit);
+
 module.exports=router;

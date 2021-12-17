@@ -14,7 +14,8 @@ const cons = require('consolidate');
 const session=require('express-session');
 const router = require('../routes/user');
 const router1=express.Router();
-
+const jwt =require('jsonwebtoken');
+const JWT_SECRET='secret';
 
 app.use(session({
     secret:'secret',
@@ -947,4 +948,111 @@ exports.cds_details=(req,res)=>{
 exports.logout=(req,res)=>{
     res.redirect('/loginform');
 
+}
+
+//Forgot password
+exports.forgotpassword=(req,res)=>{
+    res.render('forgotpassword')
+}
+
+exports.forgotsubmit=(req,res)=>{
+    const email= req.body.email;
+    pool.getConnection((err,connection)=>{
+        if(err)throw err;
+        connection.query("select id,name,password from user_reg where email=?",[email],(err,user)=>{
+            console.log(user)
+            if (err) throw err;
+            if (user.length==0){
+                res.write("<script>window.alert('Mail not Registered');window.location.href='/forgotpassword';</script>")
+            }
+            else{
+                const secret=JWT_SECRET+user.password
+                global.payload={
+                email: user.email,
+                id: user.id
+                }
+            const token= jwt.sign(payload,secret,{expiresIn: '10m'})
+            const link=`http://localhost:5050/resetpassword/${user[0].id}/${token}`
+
+            let transporter = nodemailer.createTransport({
+                host: "smtp.gmail.com",
+                port: 465,
+                secure: true, // true for 465, false for other ports
+                auth: {
+                  user: "tsscarservice@gmail.com", // generated ethereal user
+                  pass: "aj1ma2ra3ha4", // generated ethereal password
+                },
+                tls:{
+                    rejectUnauthorized:false
+                }
+              });
+              let mailoptions = {
+                from: '"TSS Admin" <tsscartesting@gmail.com>',
+                to: email,
+                subject: "Reset Password",
+                html: `Use the below link to reset Your Password<br> ${link}`,
+              };
+              transporter.sendMail(mailoptions,(err, info)=>{
+                  if (err){
+                      console.log(err)
+                  }
+                  else{
+                  console.log('Message Sent');
+                  res.write("<script>window.alert('Link sent To Mail');window.location.href='/forgotpassword';</script>")
+                  }
+                                       })
+            
+            }
+        });
+    });
+
+}
+
+exports.resetpassword=(req,res)=>{
+    const {id,token}=req.params;
+    pool.getConnection((err,connection)=>{
+        if(err)throw err;
+        connection.query("select id,name,password from user_reg where id=?",[id],(err,user)=>{
+            if (err) throw err;
+            if (user.length==0){
+                res.write('Invalid id');
+            }
+            else{
+                const secret=JWT_SECRET+user.password
+                try{
+                    const payload=jwt.verify(token,secret)
+                    res.render('resetpassword',{user,token});
+                }catch(error){
+                    console.log(error);
+                }
+            }
+        });
+    });
+}
+
+exports.resetsubmit=(req,res)=>{
+    const {password,confirm_password}= req.body
+    const {id,token}=req.params
+    pool.getConnection((err,connection)=>{
+        if(err)throw err;
+        connection.query("select id,name,email,password from user_reg where id=?",[id],(err,user)=>{
+            if (err) throw err;
+            if (user.length==0){
+                res.write("<script>window.alert('Invalid id');window.location.href='/resetpassword/:id/:token'</script>")
+            }
+            else{
+                const secret=JWT_SECRET+user.password
+                try{
+                    const payload=jwt.verify(token,secret)
+                    connection.query("update user_reg set Password=? where email=?",[password,user[0].email],(err,result)=>{
+                        if (err) throw err;
+                        res.write("<script>window.alert('Password Changed Sucessfully');window.location.href='/loginform';</script>")
+                    })
+                }
+                catch(error){
+                    console.log(error)
+                }
+            }
+        });
+    });
 }
