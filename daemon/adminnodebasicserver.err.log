@@ -1,0 +1,20 @@
+Deprecation warning: value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date(), which is not reliable across all browsers and versions. Non RFC2822/ISO date formats are discouraged. Please refer to http://momentjs.com/guides/#/warnings/js-date/ for more info.
+Arguments: 
+[0] _isAMomentObject: true, _isUTC: false, _useUTC: false, _l: undefined, _i: YYYY-MM-DD, _f: undefined, _strict: undefined, _locale: [object Object]
+Error
+    at Function.createFromInputFallback (E:\TSS\node_modules\moment\moment.js:319:25)
+    at configFromString (E:\TSS\node_modules\moment\moment.js:2536:19)
+    at configFromInput (E:\TSS\node_modules\moment\moment.js:2977:13)
+    at prepareConfig (E:\TSS\node_modules\moment\moment.js:2960:13)
+    at createFromConfig (E:\TSS\node_modules\moment\moment.js:2927:44)
+    at createLocalOrUTC (E:\TSS\node_modules\moment\moment.js:3021:16)
+    at createLocal (E:\TSS\node_modules\moment\moment.js:3025:16)
+    at hooks (E:\TSS\node_modules\moment\moment.js:16:29)
+    at Object.dateHelper (E:\TSS\node_modules\helper-date\index.js:48:15)
+    at Object.wrapper (E:\TSS\node_modules\handlebars\dist\cjs\handlebars\internal\wrapHelper.js:15:19)
+    at Object.eval [as main] (eval at createFunctionContext (E:\TSS\node_modules\handlebars\dist\cjs\handlebars\compiler\javascript-compiler.js:262:23), <anonymous>:11:98)
+    at main (E:\TSS\node_modules\handlebars\dist\cjs\handlebars\runtime.js:208:32)
+    at ret (E:\TSS\node_modules\handlebars\dist\cjs\handlebars\runtime.js:212:12)
+    at ret (E:\TSS\node_modules\handlebars\dist\cjs\handlebars\compiler\compiler.js:519:21)
+    at ExpressHandlebars._renderTemplate (E:\TSS\node_modules\express-handlebars\lib\express-handlebars.js:261:10)
+    at ExpressHandlebars.render (E:\TSS\node_modules\express-handlebars\lib\express-handlebars.js:173:21)

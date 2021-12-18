@@ -69,7 +69,7 @@ exports.loginform=(req,res)=>{
                             if(!err1){
                                 console.log(rows);
                                 console.log("Data inserted");
-                                res.send(`<script>window.alert('Registered Successfully');window.location.href='/loginform';</script>`);
+                                res.send(`<script>window.alert('Registered Successfully');window.location.href='/';</script>`);
                             }
                             else{
                                 console.log(err);
@@ -105,7 +105,7 @@ exports.login_form= async(req,res)=>{
             connection.query('SELECT * FROM admin WHERE email=? AND password=?',[username,password],(err,rows1)=>{
                 if(rows.length>0){
                     console.log(rows)
-                    const hash_val=rows[0].password;
+                    const hash_val=rows[0].c_password;
                     console.log(hash_val);
                     console.log(password);
                     const bool_val=bcrypt.compareSync(password,hash_val);
@@ -118,7 +118,7 @@ exports.login_form= async(req,res)=>{
                         user_d=rows[0].dept;
                     }
                     else{
-                        res.send(`<script>window.alert('Incorrect Password');window.location.href='/loginform';</script>`);
+                        res.send(`<script>window.alert('Incorrect Password');window.location.href='/';</script>`);
                     }
                     
                 }
@@ -126,7 +126,7 @@ exports.login_form= async(req,res)=>{
                     res.redirect('/adminhome');
                 }
                 else{
-                    res.send(`<script>window.alert('Incorrect email or password');window.location.href='/loginform';</script>`);
+                    res.send(`<script>window.alert('Incorrect email or password');window.location.href='/';</script>`);
                 } 
             })
         })
@@ -144,7 +144,7 @@ exports.homepage=(req,res)=>{
     if(req.session.login==true){
         res.sendFile(path.join(__dirname+'/home.html'));
     }else{
-        res.redirect('/loginform');
+        res.redirect('/');
     }
     
 }
@@ -947,7 +947,7 @@ exports.cds_details=(req,res)=>{
 
 //logout
 exports.logout=(req,res)=>{
-    res.redirect('/loginform');
+    res.redirect('/');
 
 }
 
@@ -1050,7 +1050,7 @@ exports.resetsubmit=(req,res)=>{
                     const payload=jwt.verify(token,secret)
                     connection.query("update user_reg set password=?,c_password=? where email=?",[hash_val,hash_val1,user[0].email],(err,result)=>{
                         if (err) throw err;
-                        res.write("<script>window.alert('Password Changed Sucessfully');window.location.href='/loginform';</script>")
+                        res.write("<script>window.alert('Password Changed Sucessfully');window.location.href='/';</script>")
                     })
                 }
                 catch(error){

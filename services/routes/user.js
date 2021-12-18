@@ -14,7 +14,7 @@ router.use(session({
 
 router.get('/register',userController.view);
 router.post('/',userController.form_register);
-router.get('/loginform',userController.loginform);
+router.get('/',userController.loginform);
 router.post('/login',userController.login_form);
 
 router.get('/homepage',userController.homepage);

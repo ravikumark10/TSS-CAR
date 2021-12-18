@@ -1,0 +1,16 @@
+2021-12-18 15:46:24 - Starting C:\Program Files\nodejs\node.exe  --harmony E:\TSS\node_modules\node-windows\lib\wrapper.js --file E:\TSS\admin_app.js --scriptoptions= --log "adminnodeBasicServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2021-12-18 15:46:24 - Started 15260
+2021-12-18 21:29:17 - Stopping adminnodebasicserver.exe
+2021-12-18 21:29:17 - ProcessKill 15260
+2021-12-18 21:29:17 - Found child process: 10920 Name: conhost.exe
+2021-12-18 21:29:17 - Found child process: 5008 Name: node.exe
+2021-12-18 21:29:17 - Stopping process 10920
+2021-12-18 21:29:17 - Send SIGINT 10920
+2021-12-18 21:29:17 - SIGINT to 10920 failed - Killing as fallback
+2021-12-18 21:29:17 - Stopping process 5008
+2021-12-18 21:29:17 - Send SIGINT 5008
+2021-12-18 21:29:17 - SIGINT to 5008 failed - Killing as fallback
+2021-12-18 21:29:17 - Stopping process 15260
+2021-12-18 21:29:17 - Send SIGINT 15260
+2021-12-18 21:29:17 - SIGINT to 15260 failed - Killing as fallback
+2021-12-18 21:29:17 - Finished adminnodebasicserver.exe
