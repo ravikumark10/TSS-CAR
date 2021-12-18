@@ -46,7 +46,7 @@ exports.view=(req,res)=>{
 
 //view login page
 exports.loginform=(req,res)=>{
-    res.sendFile(path.join(__dirname+'/login.html'));
+    res.sendFile(path.join(__dirname+'/index.html'));
 
 }
 
@@ -104,6 +104,7 @@ exports.login_form= async(req,res)=>{
         connection.query('SELECT * FROM user_reg WHERE email=?',[username],(err,rows)=>{
             connection.query('SELECT * FROM admin WHERE email=? AND password=?',[username,password],(err,rows1)=>{
                 if(rows.length>0){
+                    console.log(rows)
                     const hash_val=rows[0].password;
                     console.log(hash_val);
                     console.log(password);
@@ -254,7 +255,7 @@ exports.datecall=(req,res)=>{
 
 // conference hall booking register
 exports.hallbook=(req,res)=>{
-    const id=Math.round(Math.random() * (100-10)+10);
+    const id=Math.round(Math.random() * (1000-10)+10);
     const hall='conference';
     const adm='none';
     const {Name,Department,Purpose,sdate,edate,stime,etime}=req.body;
@@ -291,9 +292,9 @@ exports.hallbook=(req,res)=>{
         }
       });
       let mailoptions = {
-        from: '"Ravikumar K" <tsscarservice@gmail.com>', // sender address
+        from: '"TSS CAR SERVICES" <tsscarservice@gmail.com>', // sender address
         to: "ravi@student.tce.edu", // list of receivers
-        subject: "Hall Booking reg", // Subject line
+        subject: "Requested Conference Hall", // Subject line
         html:msg, // html body
       };
 
@@ -303,7 +304,7 @@ exports.hallbook=(req,res)=>{
           }
           console.log('Message Sent');
           //window.alert('Returned Sucessfully');
-          res.send(`<script>window.alert('Conference hall booked successfully');window.location.href='/conference';</script>`);
+          res.send(`<script>window.alert('Conference hall requested successfully');window.location.href='/conference';</script>`);
       });
 
         
@@ -371,7 +372,7 @@ exports.datecall1=(req,res)=>{
 
 //classroom booking register
 exports.classroombook=(req,res)=>{
-    const id=Math.round(Math.random() * (100-10)+10);
+    const id=Math.round(Math.random() * (1000-10)+10);
     const adm='none';
     const {Name,Department,Purpose,floor,sdate,edate,stime,etime}=req.body;
     var msg = `<p>Classroom Booking Reg: Classroom has been requested!!!</p><br>
@@ -407,9 +408,9 @@ exports.classroombook=(req,res)=>{
         }
       });
       let mailoptions = {
-        from: `"TSS Facility" <tsscarservice@gmail.com>`, // sender address
+        from: `"TSS CAR SERVICES" <tsscarservice@gmail.com>`, // sender address
         to: "ravi@student.tce.edu", // list of receivers
-        subject: "Classroom booking reg", // Subject line
+        subject: "Requested Classroom", // Subject line
         html:msg, // html body
       };
 
@@ -419,7 +420,7 @@ exports.classroombook=(req,res)=>{
           }
           console.log('Message Sent');
           //window.alert('Returned Sucessfully');
-          res.send(`<script>window.alert('Classroom booked successfully');window.location.href='/classroom';</script>`);
+          res.send(`<script>window.alert('Classroom requested successfully');window.location.href='/classroom';</script>`);
       });
 
         connection.release();
@@ -490,7 +491,7 @@ exports.e_datecall=(req,res)=>{
 
 //Equipments booking register
 exports.equipments_book=(req,res)=>{
-    const id=Math.round(Math.random() * (100-10)+10);
+    const id=Math.round(Math.random() * (1000-10)+10);
     const adm='none';
     const {Name,Department,Purpose,machine,sdate,edate,stime,etime}=req.body;
     var msg = `<p>Equipments Booking Reg:${machine} has been requested!!!</p><br>
@@ -526,9 +527,9 @@ exports.equipments_book=(req,res)=>{
         }
       });
       let mailoptions = {
-        from: `"Ravikumar K" <tsscarservice@gmail.com>`, // sender address
+        from: `"TSS CAR SERVICES" <tsscarservice@gmail.com>`, // sender address
         to: "ravi@student.tce.edu", // list of receivers
-        subject: "Equipments booking reg", // Subject line
+        subject: "Requested Equipments", // Subject line
         html:msg, // html body
       };
 
@@ -538,7 +539,7 @@ exports.equipments_book=(req,res)=>{
           }
           console.log('Message Sent');
           //window.alert('Returned Sucessfully');
-          res.send(`<script>window.alert('Equipments booked successfully');window.location.href='/equipments';</script>`);
+          res.send(`<script>window.alert('Equipments requested successfully');window.location.href='/equipments';</script>`);
       });
 
         connection.release();
@@ -605,13 +606,13 @@ exports.d_datecall=(req,res)=>{
 
 // Display center booking register
 exports.displayCenter_book=(req,res)=>{
-    const id=Math.round(Math.random() * (100-10)+10);
+    const id=Math.round(Math.random() * (1000-10)+10);
     const hall='Display Center';
     const adm='none';
     const {Name,Department,Purpose,sdate,edate,stime,etime}=req.body;
-    var msg = `<p>Conference Hall Booking Reg: Conference Hall has been requested!!!</p><br>
+    var msg = `<p>Display Center Reg: Display Center has been requested!!!</p><br>
     Respected Sir/Madam<br>
-    This is the notification about the request for the Conference.<br>
+    This is the notification about the request for the Display Center.<br>
     Name: ${Name}<br>
     Department: ${Department}<br>
     Requesting Hall: Conference Hall<br>
@@ -642,9 +643,9 @@ exports.displayCenter_book=(req,res)=>{
         }
       });
       let mailoptions = {
-        from: '"Ravikumar K" <tsscarservice@gmail.com>', // sender address
+        from: '"TSS CAR SERVICES" <tsscarservice@gmail.com>', // sender address
         to: "ravi@student.tce.edu", // list of receivers
-        subject: "Hall Booking reg", // Subject line
+        subject: "Requested Display Center", // Subject line
         html:msg, // html body
       };
 
@@ -654,7 +655,7 @@ exports.displayCenter_book=(req,res)=>{
           }
           console.log('Message Sent');
           //window.alert('Returned Sucessfully');
-          res.send(`<script>window.alert('Display Center booked successfully');window.location.href='/displaycenter';</script>`);
+          res.send(`<script>window.alert('Display Center requested successfully');window.location.href='/displaycenter';</script>`);
       });
 
         connection.release();
@@ -725,7 +726,7 @@ exports.ce_datecall=(req,res)=>{
 
 //CEVT Equipments booking register
 exports.cevt_equipments_book=(req,res)=>{
-    const id=Math.round(Math.random() * (100-10)+10);
+    const id=Math.round(Math.random() * (1000-10)+10);
     const adm='none';
     const {Name,Department,Purpose,machine,sdate,edate,stime,etime}=req.body;
     var msg = `<p>Equipments Booking Reg:${machine} has been requested!!!</p><br>
@@ -761,9 +762,9 @@ exports.cevt_equipments_book=(req,res)=>{
         }
       });
       let mailoptions = {
-        from: `"Ravikumar K" <tsscarservice@gmail.com>`, // sender address
+        from: `"TSS CAR SERVICES" <tsscarservice@gmail.com>`, // sender address
         to: "ravi@student.tce.edu", // list of receivers
-        subject: "Equipments booking reg", // Subject line
+        subject: "Requested Equipments", // Subject line
         html:msg, // html body
       };
 
@@ -773,7 +774,7 @@ exports.cevt_equipments_book=(req,res)=>{
           }
           console.log('Message Sent');
           //window.alert('Returned Sucessfully');
-          res.send(`<script>window.alert('CEVT Equipments booked successfully');window.location.href='/cevt';</script>`);
+          res.send(`<script>window.alert('CEVT Equipments requested successfully');window.location.href='/cevt';</script>`);
       });
 
         connection.release();
@@ -844,13 +845,13 @@ exports.cd_datecall=(req,res)=>{
 
 // cds lab booking register
 exports.cds_book=(req,res)=>{
-    const id=Math.round(Math.random() * (100-10)+10);
+    const id=Math.round(Math.random() * (1000-10)+10);
     const hall='cds';
     const adm='none';
     const {Name,Department,Purpose,sdate,edate,stime,etime}=req.body;
-    var msg = `<p>Conference Hall Booking Reg: Conference Hall has been requested!!!</p><br>
+    var msg = `<p>CDS Lab Booking Reg: CDS Lab has been requested!!!</p><br>
     Respected Sir/Madam<br>
-    This is the notification about the request for the Conference.<br>
+    This is the notification about the request for the CDS Lab.<br>
     Name: ${Name}<br>
     Department: ${Department}<br>
     Requesting Hall: Conference Hall<br>
@@ -881,9 +882,9 @@ exports.cds_book=(req,res)=>{
         }
       });
       let mailoptions = {
-        from: '"Ravikumar K" <tsscarservice@gmail.com>', // sender address
+        from: '"TSS CAR SERVICES" <tsscarservice@gmail.com>', // sender address
         to: "ravi@student.tce.edu", // list of receivers
-        subject: "Hall Booking reg", // Subject line
+        subject: "Requested CDS Lab", // Subject line
         html:msg, // html body
       };
 
@@ -893,7 +894,7 @@ exports.cds_book=(req,res)=>{
           }
           console.log('Message Sent');
           //window.alert('Returned Sucessfully');
-          res.send(`<script>window.alert('CDS Lab booked successfully');window.location.href='/cds';</script>`);
+          res.send(`<script>window.alert('CDS Lab requested successfully');window.location.href='/cds';</script>`);
       });
 
         connection.release();
@@ -1031,7 +1032,10 @@ exports.resetpassword=(req,res)=>{
 }
 
 exports.resetsubmit=(req,res)=>{
-    const {password,confirm_password}= req.body
+    const password= req.body.password;
+    const c_password=req.body.confirm_password;
+    var hash_val=bcrypt.hashSync(password,10);
+    var hash_val1=bcrypt.hashSync(c_password,10)
     const {id,token}=req.params
     pool.getConnection((err,connection)=>{
         if(err)throw err;
@@ -1044,7 +1048,7 @@ exports.resetsubmit=(req,res)=>{
                 const secret=JWT_SECRET+user.password
                 try{
                     const payload=jwt.verify(token,secret)
-                    connection.query("update user_reg set Password=? where email=?",[password,user[0].email],(err,result)=>{
+                    connection.query("update user_reg set password=?,c_password=? where email=?",[hash_val,hash_val1,user[0].email],(err,result)=>{
                         if (err) throw err;
                         res.write("<script>window.alert('Password Changed Sucessfully');window.location.href='/loginform';</script>")
                     })

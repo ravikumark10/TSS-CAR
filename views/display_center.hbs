@@ -45,7 +45,7 @@
     <div id="c-ss-d">
         <form action="/d_datecall" method="post">
             <label>Select date:</label>
-            <input type="date" name="Date"><br>
+            <input type="date" name="Date" min="{{date "YYYY-MM-DD"}}" required><br>
             <button  type="submit">Check</button>
         </form>
     </div>  

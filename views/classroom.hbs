@@ -45,7 +45,7 @@
     <div id="c-ss-d">
         <form action="/datedisplay1" method="post">
             <label>Select date:</label>
-            <input type="date" name="Date" required><br>
+            <input type="date" name="Date" min="{{date "YYYY-MM-DD"}}" required><br>
             <div id="c-floor">
             <label>Select floor:</label>
             <select name="floor" required>

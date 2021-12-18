@@ -45,7 +45,7 @@
     <div id="c-ss-d">
         <form action="/e_datecall" method="post">
             <label>Select date:</label>
-            <input type="date" name="Date" required><br>
+            <input type="date" name="Date" min="{{date "YYYY-MM-DD"}}" required><br>
             <div id="c-machine">
             <label>Select machine:</label>
             <select name="machine" required>

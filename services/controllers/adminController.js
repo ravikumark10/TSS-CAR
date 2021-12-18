@@ -45,9 +45,9 @@ exports.admin= (req,res)=>{
                        if (err) throw err;
                        connection.query("select COUNT(*) as total from log",(err,users)=>{
                         
-                        var y=new Date().getFullYear();
+                        var date=new Date().getFullYear();
                         if (err) throw err;
-                        connection.query("select month(sdate) as m,count(*) as c from log where year(sdate)=? and HALL=? group by year(sdate),month(sdate) order by year(sdate),month(sdate)",[y,'conference'],(err,conf)=>{
+                        connection.query("select month(sdate) as m,count(*) as c from log where year(sdate)=? and HALL=? group by year(sdate),month(sdate) order by year(sdate),month(sdate)",[date,'conference'],(err,conf)=>{
                             if (err) throw err;
                             console.log(conf);
                             for (let i in conf){
@@ -59,7 +59,7 @@ exports.admin= (req,res)=>{
                                 var y=confmonth[i]
                                 conference=conference+""+(y.toString());
                             }
-                            connection.query("select month(sdate) as m,count(*) as c from log where year(sdate)=? and (HALL=? or HALL=?) group by year(sdate),month(sdate) order by year(sdate),month(sdate)",[y, 'Ground Floor','First Floor'],(err,classroom)=>{
+                            connection.query("select month(sdate) as m,count(*) as c from log where year(sdate)=? and (HALL=? or HALL=?) group by year(sdate),month(sdate) order by year(sdate),month(sdate)",[date, 'Ground Floor','First Floor'],(err,classroom)=>{
                                 if (err) throw err;
                         console.log(classroom);
                         for (let i in classroom){
@@ -176,10 +176,9 @@ exports.Returnmail =(req,res)=>{
        }
      });
      let mailoptions = {
-       from: '"TSS Admin" <tsscarservice@gmail.com>',
+       from: '"TSS CAR SERVICES" <tsscarservice@gmail.com>',
        to: returnEmail,
-       subject: "Hall Booking reg",
-       text: "Approval Denied",
+       subject: "Request rejected",
        html: returncontent,
      };
 
@@ -239,10 +238,9 @@ let transporter = nodemailer.createTransport({
   }
 });
 let mailoptions = {
-  from: '"TSS Admin" <tsscarservice@gmail.com>',
+  from: '"TSS CAR SERVICES" <tsscarservice@gmail.com>',
   to: approveEmail,
-  subject: "Hall Booking reg",
-  text: "Approved",
+  subject: "Booked succcessfully",
   html: approvecontent,
 };
 transporter.sendMail(mailoptions,(err, info)=>{

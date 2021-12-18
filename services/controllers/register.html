@@ -37,11 +37,11 @@
         </div>
 		<div class="form-group">
 			<label>Password</label>
-            <input type="password" id="pass" class="form-control" name="Password" required="required">
+            <input type="password" id="pass" class="form-control" name="Password" minlength="8" required="required">
         </div>
 		<div class="form-group">
 			<label>Confirm Password</label>
-            <input type="password" class="form-control" name="c_password" onkeyup="check(this);" required="required">
+            <input type="password" class="form-control" name="c_password" minlength="8" onkeyup="check(this);" required="required">
 			<error id="err" style="color: red;"></error>
         </div>       
 		<div class="form-group">
