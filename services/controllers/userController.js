@@ -159,11 +159,16 @@ exports.profile=(req,res)=>{
         console.log("connect to database "+connection.threadId);
         connection.query('SELECT * FROM user_reg WHERE id=?',[user_id],(err,rows)=>{
             if(!err){
-                var user_name=rows[0].name;
-                var user_dept=rows[0].dept;
-                var user_email=rows[0].email;
-                var user_pass=rows[0].password;
-                res.render('profile',{user_name,user_dept,user_email,user_pass});
+                if(req.session.login==true){
+                    var user_name=rows[0].name;
+                    var user_dept=rows[0].dept;
+                    var user_email=rows[0].email;
+                    var user_pass=rows[0].password;
+                    res.render('profile',{user_name,user_dept,user_email,user_pass});
+                }else{
+                    res.redirect('/');
+                }
+               
             }
         })
 
@@ -204,8 +209,13 @@ global.date_val="";
 var result=["07:00 AM","08:00 AM","09:00 AM","10:00 AM","11:00 AM","12:00 PM","01:00 PM","02:00 PM","03:00 PM","04:00 PM","05:00 PM","06:00 PM","07:00 PM","08:00 PM","09:00 PM"];
 //view conference hall
 exports.conferencehall=(req,res)=>{
-    console.log(date_val);
-    res.render('conference',{date_val,request,approve,result,user,user_d});
+    if(req.session.login==true){
+        console.log(date_val);
+        res.render('conference',{date_val,request,approve,result,user,user_d});
+    }else{
+        res.redirect('/');
+    }
+    
 }
 
 //to display date values for conference hall
@@ -323,7 +333,12 @@ global.c_result=c_timechart;
 var c_result=["07:00 AM","08:00 AM","09:00 AM","10:00 AM","11:00 AM","12:00 PM","01:00 PM","02:00 PM","03:00 PM","04:00 PM","05:00 PM","06:00 PM","7:00 PM","8:00 PM","9:00 PM"];
 //view classroom
 exports.classroom=(req,res)=>{
-    res.render('classroom',{c_formattedDate,c_result,c_approve,c_request,user,user_d,floor_val});
+    if(req.session.login==true){
+        res.render('classroom',{c_formattedDate,c_result,c_approve,c_request,user,user_d,floor_val});
+    }else{
+        res.redirect('/');
+    }
+        
 }
 
 //to display date values for classroom
@@ -440,7 +455,12 @@ global.e_machine="";
 var e_result=["07:00 AM","08:00 AM","09:00 AM","10:00 AM","11:00 AM","12:00 PM","01:00 PM","02:00 PM","03:00 PM","04:00 PM","05:00 PM","06:00 PM","7:00 PM","8:00 PM","9:00 PM"];
 //view equipments page
 exports.equipments=(req,res)=>{
-    res.render('equipments',{e_formattedDate,e_result,e_approve,e_request,user,user_d,e_machine});
+    if(req.session.login==true){
+        res.render('equipments',{e_formattedDate,e_result,e_approve,e_request,user,user_d,e_machine});
+    }else{
+        res.redirect('/');
+    }
+    
 };
 
 //to display date values for equipments
@@ -558,8 +578,13 @@ global.d_date_val="";
 var d_result=["07:00 AM","08:00 AM","09:00 AM","10:00 AM","11:00 AM","12:00 PM","01:00 PM","02:00 PM","03:00 PM","04:00 PM","05:00 PM","06:00 PM","07:00 PM","08:00 PM","09:00 PM"];
 //view Display Center
 exports.displayCenter=(req,res)=>{
-    console.log(date_val);
-    res.render('display_center',{d_date_val,d_request,d_approve,d_result,user,user_d});
+    if(req.session.login==true){
+        console.log(date_val);
+        res.render('display_center',{d_date_val,d_request,d_approve,d_result,user,user_d});
+    }else{
+        res.redirect('/');
+    }
+    
 }
 
 //to display date values for display center
@@ -676,7 +701,12 @@ global.ce_machine="";
 var ce_result=["07:00 AM","08:00 AM","09:00 AM","10:00 AM","11:00 AM","12:00 PM","01:00 PM","02:00 PM","03:00 PM","04:00 PM","05:00 PM","06:00 PM","07:00 PM","08:00 PM","09:00 PM"];
 //view equipments page
 exports.cevt=(req,res)=>{
-    res.render('ev-lab-book',{ce_formattedDate,ce_result,ce_approve,ce_request,user,user_d,ce_machine});
+    if(req.session.login==true){
+        res.render('ev-lab-book',{ce_formattedDate,ce_result,ce_approve,ce_request,user,user_d,ce_machine});
+    }else{
+        res.redirect('/');
+    }
+    
 };
 
 //to display date values for equipments
@@ -797,8 +827,13 @@ global.cd_date_val="";
 var cd_result=["07:00 AM","08:00 AM","09:00 AM","10:00 AM","11:00 AM","12:00 PM","01:00 PM","02:00 PM","03:00 PM","04:00 PM","05:00 PM","06:00 PM","07:00 PM","08:00 PM","09:00 PM"];
 //view cds hall
 exports.cds=(req,res)=>{
-    console.log(cd_date_val);
-    res.render('cds',{cd_date_val,cd_request,cd_approve,cd_result,user,user_d});
+    if(req.session.login=true){
+        console.log(cd_date_val);
+        res.render('cds',{cd_date_val,cd_request,cd_approve,cd_result,user,user_d});
+    }else{
+        res.redirect('/');
+    }
+    
 }
 
 //to display date values for cds hall
@@ -910,43 +945,74 @@ exports.home=(req,res)=>{
 
 //view lab page
 exports.labs=(req,res)=>{
-    res.sendFile(path.join(__dirname+'/labs.html'));
+    if(req.session.login==true){
+        res.sendFile(path.join(__dirname+'/labs.html'));
+    }else{
+        res.redirect('/');
+    }
+    
 
 }
 
 
 //view product lab page
 exports.product_lab=(req,res)=>{
-    res.sendFile(path.join(__dirname+'/product-lab.html'));
+    if(req.session.login==true){
+        res.sendFile(path.join(__dirname+'/product-lab.html'));
+    }else{
+        res.redirect('/');
+    }
+    
 
 }
 
 //view product lab page
 exports.ev_lab=(req,res)=>{
-    res.sendFile(path.join(__dirname+'/ev-lab.html'));
+    if(req.session.login==true){
+        res.sendFile(path.join(__dirname+'/ev-lab.html'));
+    }else{
+        res.redirect('/');
+    }
+    
 
 }
 
 //view equipmnent details lab page
 exports.equ_details=(req,res)=>{
-    res.sendFile(path.join(__dirname+'/equ_details.html'));
+    if(req.session.login=true){
+        res.sendFile(path.join(__dirname+'/equ_details.html'));
+    }else{
+        res.redirect('/');
+    }
+    
 
 }
 
 //view cevt equipmnent details lab page
 exports.cevt_details=(req,res)=>{
-    res.sendFile(path.join(__dirname+'/cevt_details.html'));
+    if(req.session.login=true){
+        res.sendFile(path.join(__dirname+'/cevt_details.html'));
+    }else{
+        res.redirect('/');
+    }
+    
 
 }
 
 //view cds lab details page
 exports.cds_details=(req,res)=>{
-    res.sendFile(path.join(__dirname+'/cds_details.html'));
+    if(req.session.login==true){
+        res.sendFile(path.join(__dirname+'/cds_details.html'));
+    }else{
+        res.redirect('/');
+    }
+    
 
 }
 
 //logout
 exports.logout=(req,res)=>{
+    req.session.login=false;
     res.redirect('/');
 
 }
