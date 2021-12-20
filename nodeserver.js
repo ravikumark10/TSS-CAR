@@ -1,7 +1,7 @@
 
 const Service = require('node-windows').Service
 const svc =new Service({
-    name:'adminnodeBasicServer',
+    name:'tsscar',
     description: 'Student project management portal admin',
     script:"E:\\TSS\\admin_app.js"
 });

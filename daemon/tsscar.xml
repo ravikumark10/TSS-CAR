@@ -1,0 +1,1 @@
+<service><id>tsscar.exe</id><name>tsscar</name><description>Student project management portal admin</description><executable>node.exe</executable><arguments>--harmony "E:\TSS\node_modules\node-windows\lib\wrapper.js" -f "E:\TSS\admin_app.js" -l "tsscar" -g 0.25 -w 1 -r 3 -a n</arguments><logmode>rotate</logmode></service>
