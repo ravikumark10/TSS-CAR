@@ -1,2 +1,7 @@
 2021-12-20 10:34:14 - Starting node.exe --harmony "E:\TSS\node_modules\node-windows\lib\wrapper.js" -f "E:\TSS\admin_app.js" -l "tsscar" -g 0.25 -w 1 -r 3 -a n
 2021-12-20 10:34:14 - Started 6884
+2021-12-20 10:55:28 - Stopping tsscar.exe
+2021-12-20 10:55:28 - ProcessKill 6884
+2021-12-20 10:55:28 - Finished tsscar.exe
+2021-12-20 10:56:01 - Starting node.exe --harmony "E:\TSS\node_modules\node-windows\lib\wrapper.js" -f "E:\TSS\admin_app.js" -l "tsscar" -g 0.25 -w 1 -r 3 -a n
+2021-12-20 10:56:01 - Started 4944

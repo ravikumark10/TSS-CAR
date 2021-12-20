@@ -14,3 +14,5 @@
 2021-12-18 21:29:17 - Send SIGINT 15260
 2021-12-18 21:29:17 - SIGINT to 15260 failed - Killing as fallback
 2021-12-18 21:29:17 - Finished adminnodebasicserver.exe
+2021-12-20 10:56:01 - Starting C:\Program Files\nodejs\node.exe  --harmony E:\TSS\node_modules\node-windows\lib\wrapper.js --file E:\TSS\admin_app.js --scriptoptions= --log "adminnodeBasicServer wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2021-12-20 10:56:01 - Started 4884
